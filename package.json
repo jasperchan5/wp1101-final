@@ -1,0 +1,15 @@
+{
+  "name": "hw8",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "cd frontend && yarn start",
+    "server": "cd backend && yarn server"
+  },
+  "dependencies": {
+    "styled-components": "^5.3.3"
+  },
+  "repository": "https://github.com/AnthonyWu1121/wp1101-final.git",
+  "author": "<anthony.hc.wu@gmail.com>"
+}
