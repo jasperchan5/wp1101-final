@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import './bootstrap.css'
+import jquery from 'jquery'
+import $ from 'jquery'
+import moment from 'moment'
+import fullcalendar from 'fullcalendar'
 
 function App() {
+
+  useEffect(() => {
+    $('#calendar').fullCalendar();
+  }, []);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="system__title">競賽匹配系統</div>
+      <div id="calendar"></div>
     </div>
+    
   );
 }
 
