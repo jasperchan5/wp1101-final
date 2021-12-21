@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Calendar.css";
+import "../bootstrap.css"
+import DaysInfo from "./DaysInfo.js";
 
 const useCalendar = () => {
   const MONTHS = [
@@ -129,7 +131,11 @@ const Calendar = () => {
                 <td
                   key={i}
                   className={isSeleted ? "selected" : ""}
-                  onClick={setSelectDate}
+                  onClick={() => {
+                      setSelectDate();
+                      <DaysInfo/>;
+                    }
+                  }
                 >
                   {day.date} <br />
                 </td>
