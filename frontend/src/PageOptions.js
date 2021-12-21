@@ -37,7 +37,7 @@ const Options = ({setLogin, teamName}) => {
     const AdminMainPage = <>
         <div className="system__title">競賽匹配系統</div>
             <div className="system__app">
-            <div className="site-calendar-demo-card"><Calendar fullscreen={false}></Calendar></div>
+            <div><Calendar fullscreen={false}></Calendar></div>
             <div className='col-md-12 system__title'>
                 <Button className="system__margins" onClick={() => {
                     setRegister(false);
