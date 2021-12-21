@@ -5,6 +5,7 @@ import Options from './PageOptions';
 import { Input, Layout } from "antd";
 import "../node_modules/antd/dist/antd.css";
 
+const client = new WebSocket("ws://localhost:4000");
 
 function App() {
   const [login, setLogin] = useState(false);
