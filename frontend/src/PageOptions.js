@@ -90,12 +90,8 @@ const Options = ({setLogin, teamName}) => {
     </>
 
     return (<>
-<<<<<<< HEAD
         <h5 style={{fontFamily: "sans-serif"}}>Now log in as: {teamName}</h5>
         {register?(teamName === "Admin"?AdminMainPage:MainPage):(search?<SearchType setSearch={setSearch}/>:OptionPage)}
-=======
-        {register?(teamName === "Admin"?AdminMainPage:MainPage):(search?SearchPage:OptionPage)}
->>>>>>> 7cad52d15c9b21b4b75f3ee85d2c0ca45966eacb
     </>)
 }
 
