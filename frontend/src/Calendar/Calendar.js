@@ -96,9 +96,11 @@ const Calendar = () => {
         <thead>
           <tr>
             <td colSpan="100%">
-              <button onClick={calendar.setPreMonth}>pre Month</button>
-              {calendar.displayMonth} {calendar.currentYear}
-              <button onClick={calendar.setNextMonth}>next Month</button>
+                <div className="monthBar" style={{fontWeight: "800"}}>
+                    <button className="leftButton" onClick={calendar.setPreMonth}>Prev Month</button>
+                    {calendar.displayMonth} {calendar.currentYear}
+                    <button className="rightButton" onClick={calendar.setNextMonth}>Next Month</button>
+                </div>
             </td>
           </tr>
         </thead>
