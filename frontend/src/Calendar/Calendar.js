@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./Calendar.css";
 import "../bootstrap.css"
 import DaysInfo from "./DaysInfo.js";
+import {Button} from "antd"
+import "../../node_modules/antd/dist/antd.css";
 
 const useCalendar = () => {
   const MONTHS = [
@@ -93,15 +95,15 @@ const Calendar = () => {
   const calendar = useCalendar();
 
   return (
-    <div>
+    <div className="App">
       <table>
         <thead>
           <tr>
             <td colSpan="100%">
                 <div className="monthBar" style={{fontWeight: "800"}}>
-                    <button className="leftButton" onClick={calendar.setPreMonth}>Prev Month</button>
+                    <Button style={{background: "none"}} className="leftButton" onClick={calendar.setPreMonth}>Prev Month</Button>
                     {calendar.displayMonth} {calendar.currentYear}
-                    <button className="rightButton" onClick={calendar.setNextMonth}>Next Month</button>
+                    <Button style={{background: "none"}} className="rightButton" onClick={calendar.setNextMonth}>Next Month</Button>
                 </div>
             </td>
           </tr>

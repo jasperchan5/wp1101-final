@@ -1,16 +1,19 @@
+.system__app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100;
+  width: 500px;
+  margin: auto;
+}
 .system__title{
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1.5cm;
 }
-.system__calenderFrame{
-  border: 2px solid gray;
-  width: 60%;
-  height: 500px;
-  margin-left: 30%;
-}
-.system__calenderSlot{
-  border: 2px solid gray;
-  width: 6%;
-  height: 50px;
-  position: relative;
+.system__margins{
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
