@@ -2,27 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Button, Input, Calendar, Layout, Modal } from "antd"
 import { Header, Content, Footer } from 'antd/lib/layout/layout';
 import "../node_modules/antd/dist/antd.css";
-<<<<<<< HEAD
 import SearchType from './SearchTypePage';
-=======
 import CalendarModal from './CalendarModal';
->>>>>>> 7cad52d15c9b21b4b75f3ee85d2c0ca45966eacb
 
 const Options = ({setLogin, teamName}) => {
     //是否是選擇時間登記
     const [register, setRegister] = useState(false);
     //是否是選擇結果查詢
     const [search, setSearch] = useState(false);
-<<<<<<< HEAD
-  
-   
-
-=======
-    const [queryValue,setQueryValue] = useState("");
     const [currentDate, setCurrentDate] = useState("");
     const [isModalVisible,setIsModalVisible] = useState(false);
     
->>>>>>> 7cad52d15c9b21b4b75f3ee85d2c0ca45966eacb
     const OptionPage = <>
         <Layout>
             <Header className="system__title">功能列表</Header>
