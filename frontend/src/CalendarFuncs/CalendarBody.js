@@ -32,7 +32,7 @@ export default () => {
             for(let i=0;i<selectedDays.length;i++){
                 if(e.year() === selectedDays[i][0] && e.month() === selectedDays[i][1] && e.date() === selectedDays[i][2]){
                     return(
-                        <div style={{height: "auto", width: "auto", backgroundColor: "#1890ff", color:"white"}}>{e.date()>=10?e.date():"0"+e.date()}</div>
+                        <div style={{height: "auto", width: "auto"}}><div style={{height: "auto", width: "55%", margin: "auto", borderRadius: "2px", backgroundColor: "#1890ff", color:"white"}}>{e.date()>=10?e.date():"0"+e.date()}</div></div>
                     )
                 }
             }

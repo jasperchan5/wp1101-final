@@ -43,7 +43,7 @@ const Options = ({setLogin, teamName}) => {
             <Footer className='col-md-12 system__title'>   
                 <Button className="system__margins" onClick={() => {
                     setRegister(false);
-                    }}>)返回功能列表</Button>
+                    }}>返回功能列表</Button>
             </Footer>
             <Footer><h5 style={{fontFamily: "sans-serif"}}>Now log in as: {teamName}</h5></Footer>
         </Layout>
