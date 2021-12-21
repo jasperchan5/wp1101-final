@@ -1,0 +1,22 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  
+  table,
+  td,
+  tr {
+    border: 1px solid black;
+  }
+  td {
+    width: 40px;
+    text-align: center;
+  }
+  
+  td.selected {
+    background-color: blueviolet;
+  }
+  td:hover {
+    cursor: pointer;
+  }
+  
