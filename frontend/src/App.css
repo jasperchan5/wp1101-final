@@ -1,38 +1,16 @@
-.App {
+.system__title{
   text-align: center;
+  font-size: 1.5cm;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.system__calenderFrame{
+  border: 2px solid gray;
+  width: 60%;
+  height: 500px;
+  margin-left: 30%;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.system__calenderSlot{
+  border: 2px solid gray;
+  width: 6%;
+  height: 50px;
+  position: relative;
 }

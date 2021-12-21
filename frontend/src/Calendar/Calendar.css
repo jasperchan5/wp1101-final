@@ -1,0 +1,50 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+table,
+td,
+tr {
+  border: 1px solid black;
+}
+td {
+  width: 100px;
+  text-align: center;
+}
+
+td.selected {
+  background-color: rgba(0, 99, 117, 0.329);
+}
+td:hover {
+  cursor: pointer;
+}
+
+table{
+  margin: auto;
+  height: 450px;
+}
+
+button{
+  background-color: rgba(77, 103, 160, 0.349);
+  border-radius: 5%;
+  width: 30%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+button.hover{
+  width: 101%;
+}
+button.leftButton{
+  margin-right: 5%;
+}
+button.rightButton{
+  margin-left: 5%;
+}
+.monthBar{
+  background-color: rgba(163, 163, 163, 0.397);
+  border-radius: 5%;
+  width: 100%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}

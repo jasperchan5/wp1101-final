@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import './bootstrap.css'
+import Calendar from './Calendar/Calendar.js';
 
 function App() {
+  const [login, setLogin] = useState(false);
+
+  const Login = <div>
+    <div className="system__title">請登入</div>
+    <button onClick={() => setLogin(true)}>Log In</button>
+  </div>
+
+  const MainPage = <div>
+    <div className="system__title">競賽匹配系統</div>
+    <div className="row"><Calendar/></div>
+    <button onClick={() => setLogin(false)}>Log Out</button>
+  </div>
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    login?MainPage:Login
   );
 }
 
