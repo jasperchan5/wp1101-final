@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Calendar from './Calendar/Calendar.js';
-import {Button, Input} from "antd"
+//import Calendar from './Calendar/Calendar.js';
+import {Button, Input, Calendar} from "antd"
 import "../node_modules/antd/dist/antd.css";
 
 const Options = ({setLogin, teamName}) => {
@@ -27,7 +27,7 @@ const Options = ({setLogin, teamName}) => {
     const MainPage = <>
         <div className="system__title">競賽匹配系統</div>
             <div className="system__app">
-            <div className="row"><Calendar/></div>
+            <div className="row site-calendar-demo-card"><Calendar/></div>
             <Button className="system__margins" onClick={() => {
                 setRegister(false);
                 }}>Back to options</Button>
@@ -37,7 +37,7 @@ const Options = ({setLogin, teamName}) => {
     const AdminMainPage = <>
         <div className="system__title">競賽匹配系統</div>
             <div className="system__app">
-            <div className="row"><Calendar/></div>
+            <div className="site-calendar-demo-card"><Calendar fullscreen={false}></Calendar></div>
             <div className='col-md-12 system__title'>
                 <Button className="system__margins" onClick={() => {
                     setRegister(false);
@@ -72,3 +72,16 @@ const Options = ({setLogin, teamName}) => {
 }
 
 export default Options
+
+
+
+
+
+
+
+
+
+
+
+
+

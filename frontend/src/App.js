@@ -26,9 +26,9 @@ function App() {
   </>
 
   return (
-    <Layout style={{height: "100vh"}}>
+     <Layout style={{height: "100vh"}}>
         {login?<Options setLogin={setLogin} teamName={teamName}/>:LoginPage}
-    </Layout>
+     </Layout>
     
   );
 }
