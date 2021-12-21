@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Button, Input, Calendar, Layout, Modal } from "antd"
 import { Header, Content, Footer } from 'antd/lib/layout/layout';
 import "../node_modules/antd/dist/antd.css";
+import SearchType from './SearchTypePage';
 import CalendarModal from './CalendarModal';
 
 const Options = ({setLogin, teamName}) => {
+    //是否是選擇時間登記
     const [register, setRegister] = useState(false);
+    //是否是選擇結果查詢
     const [search, setSearch] = useState(false);
-    const [queryValue,setQueryValue] = useState("");
     const [currentDate, setCurrentDate] = useState("");
     const [isModalVisible,setIsModalVisible] = useState(false);
     
@@ -77,25 +79,12 @@ const Options = ({setLogin, teamName}) => {
         </Layout>
     </>
 
-    const SearchPage = <>
-        <div className="system__title">查詢匹配結果</div>
-        <div className="system__app">
-            <Input.Search
-                placeholder='Enter your team name'
-                onChange={(e) => {setQueryValue(e.target.value)}}
-                onSearch={() => alert(queryValue)}
-            ></Input.Search>
-            <Button className="system__margins" onClick={() => {
-                setSearch(false);
-                }}>Back to options</Button>
-        </div>
-    </>
     return (<>
-        {register?(teamName === "Admin"?AdminMainPage:MainPage):(search?SearchPage:OptionPage)}
+        {register?(teamName === "Admin"?AdminMainPage:MainPage):(search?<SearchType setSearch={setSearch}/>:OptionPage)}
     </>)
 }
 
-export default Options
+export default Options;
 
 
 
