@@ -1,5 +1,3 @@
-@import "../node_modules/antd/dist/antd.css";
-
 .system__app {
   display: flex;
   flex-direction: column;
@@ -25,12 +23,4 @@
 .system__margins{
   margin-top: 1%;
   margin-bottom: 1%;
-}
-
-.site-calendar-demo-card {
-  width: 900px;
-  height:200px; 
-  border: 5px solid rgb(104, 99, 99);
-  /* margin: 100px; */
-  border-radius: 2px;
 }
