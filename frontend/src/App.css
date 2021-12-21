@@ -5,8 +5,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 500;
-  width: 1000px;
+  height: 80vh;
+  width: 500px;
+  margin: auto;
+}
+.system__calendar{
+  width: 500px;
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
   margin: auto;
 }
 .system__title{
@@ -14,6 +20,7 @@
   align-items: center;
   justify-content: center;
   font-size: 1.5cm;
+  background-color: transparent;
 }
 .system__margins{
   margin-top: 1%;
