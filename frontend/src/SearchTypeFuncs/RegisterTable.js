@@ -24,21 +24,24 @@ export default () => {
         {
           key: '1',
           name: '台大資管',
-          time: ['2021/1/1','2021/1/6']
+          time: ['2021/1/1','2021/1/6'],
+          num: 1
         },
         {
           key: '2',
           name: '清大人社',
-          time: ['2021/1/1']
+          time: ['2021/1/1'],
+          num: 2
         },
         {
           key: '3',
           name: '交大資工',
-          time: ['2021/1/1']
+          time: ['2021/1/1'],
+          num: 3
         },
       ];
       
       return(
-          <Table columns={columns} dataSource={data}></Table>
+          <Table columns={columns} dataSource={data} rowKey={(data) => data.num} pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['1', '2', '5']}}></Table>
       )
 }
