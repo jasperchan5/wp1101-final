@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Button, Layout} from "antd"
 import "../node_modules/antd/dist/antd.css";
 import { Header,Content,Footer } from 'antd/lib/layout/layout';
+import MatchTable from './SearchTypeFuncs/MatchTable';
+import RegisterTable from './SearchTypeFuncs/RegisterTable';
 
 const SearchType = ({setSearch, teamName}) => {
      //查詢登記(searchALL:登記紀錄)
@@ -34,8 +36,8 @@ const SearchType = ({setSearch, teamName}) => {
     const RegisterRecordPage = <>
     <Layout>
         <Header className="system__title" style={{backgroundColor: "transparent"}}>登記執行紀錄</Header>
-        <Layout>
-            <Content>Main content</Content>
+        <Layout className='system__table'>
+            <Content><RegisterTable></RegisterTable></Content>
         </Layout>
         <Footer className="system__app"><Button className="system__margins" onClick={() => {
                         setsearchAll(false);
@@ -48,8 +50,8 @@ const SearchType = ({setSearch, teamName}) => {
     const MatchResult = <>
     <Layout>
         <Header className="system__title" style={{backgroundColor: "transparent"}}>已匹配結果</Header>
-        <Layout>
-            <Content>Main content</Content>
+        <Layout className='system__table'>
+            <Content><MatchTable></MatchTable></Content>
         </Layout>
         <Footer className="system__app">
         <Button className="system__margins" onClick={() => {

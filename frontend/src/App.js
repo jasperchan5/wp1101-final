@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import './bootstrap.css';
 import Options from './PageOptions';
-import { Input, Layout, Alert } from "antd";
+import { Input, Layout, message } from "antd";
 import { Header, Content, Footer } from 'antd/lib/layout/layout';
 import "../node_modules/antd/dist/antd.css";
 
@@ -10,7 +10,7 @@ const client = new WebSocket("ws://localhost:4000");
 
 function App() {
   const [login, setLogin] = useState(false);
-  const [teamName, setTeamName] = useState('')
+  const [teamName, setTeamName] = useState('');
 
   const LoginPage = <>
       <Layout>
@@ -22,19 +22,16 @@ function App() {
               enterButton="登入"
               size='large'
               onSearch={(e) => {
-                if(e!==""){
-                  setLogin(true);
-                }
-                else{
-                    <Alert 
-                      message="Error"
-                      description="This is an error message about copywriting."
-                      type="error"
-                      showIcon
-                    />
-                }
+                  if(e!==""){
+                    setLogin(true);
+                  }
+                  else{
+                    message.error("請輸入隊名",3);
+                  }
                 }}
-              onChange={(e) => {setTeamName(e.target.value)}}
+              onChange={(e) => {
+                setTeamName(e.target.value);
+              }}
             ></Input.Search>
           </Content>
         </Layout>

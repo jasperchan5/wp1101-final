@@ -13,6 +13,16 @@
   border-radius: 2px;
   margin: auto;
 }
+.system__table{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  width: 500px;
+  margin: auto;
+  margin-top: 2%;
+}
 .system__title{
   display: flex;
   align-items: center;

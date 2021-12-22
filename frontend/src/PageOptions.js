@@ -5,7 +5,7 @@ import "../node_modules/antd/dist/antd.css";
 import SearchType from './SearchTypePage';
 import CalendarBody from './CalendarFuncs/CalendarBody';
 
-const Options = ({setLogin, teamName}) => {
+const Options = ({ setLogin, teamName}) => {
     //是否是選擇時間登記
     const [register, setRegister] = useState(false);
     //是否是選擇結果查詢
