@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Layout, Modal, DatePicker, Space } from "antd"
 import { Header, Content, Footer } from 'antd/lib/layout/layout';
-import "../node_modules/antd/dist/antd.css";
+import "antd/dist/antd.css";
 import SearchType from './SearchTypePage';
-import CalendarBody from './CalendarFuncs/CalendarBody';
-import CalendarModal from './CalendarFuncs/CalendarModal';
+import CalendarBody from '../CalendarFuncs/CalendarBody';
+import CalendarModal from '../CalendarFuncs/CalendarModal';
 
 const Options = ({ setLogin, teamName }) => {
     //是否是選擇時間登記

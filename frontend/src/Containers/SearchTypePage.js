@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 //import Calendar from './Calendar/Calendar.js';
 import { Button, Layout} from "antd"
-import "../node_modules/antd/dist/antd.css";
+import "antd/dist/antd.css";
 import { Header,Content,Footer } from 'antd/lib/layout/layout';
-import MatchTable from './SearchTypeFuncs/MatchTable';
-import RegisterTable from './SearchTypeFuncs/RegisterTable';
+import MatchTable from '../SearchTypeFuncs/MatchTable';
+import RegisterTable from '../SearchTypeFuncs/RegisterTable';
 
 const SearchType = ({setSearch, teamName}) => {
      //查詢登記(searchALL:登記紀錄)

@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
-import './bootstrap.css';
+import '../App.css';
+import '../bootstrap.css';
 import Options from './PageOptions';
 import { Input, Layout, message } from "antd";
 import { Header, Content, Footer } from 'antd/lib/layout/layout';
-import "../node_modules/antd/dist/antd.css";
+import "antd/dist/antd.css";
 
-const client = new WebSocket("ws://localhost:4000");
+
+import { useQuery } from '@apollo/client';
+import { ALLTEAM_QUERY } from '../graphql/queries';
 
 function App() {
   const [login, setLogin] = useState(false);
   const [teamName, setTeamName] = useState('');
+  const { data, loading } = useQuery(ALLTEAM_QUERY);
 
   const LoginPage = <>
       <Layout>
@@ -21,9 +24,17 @@ function App() {
               placeholder="輸入隊名..."
               enterButton="登入"
               size='large'
-              onSearch={(e) => {
+              onSearch={async (e) => {
+                  let found = false;
+                  data.allTeam.forEach((i) => {
+                    if(i.team === e){
+                      found = true;
+                    }
+                  });
                   if(e!==""){
-                    setLogin(true);
+                    if(found || e === 'Admin')
+                      setLogin(true);
+                    else message.error('不在名單中');
                   }
                   else{
                     message.error("請輸入隊名",3);
@@ -38,6 +49,9 @@ function App() {
         <Footer></Footer>
       </Layout>
   </>
+  if(loading) return <p>loading...</p>
+
+  console.log(data);
 
   return (
     login?<Options setLogin={setLogin} teamName={teamName}/>:LoginPage
