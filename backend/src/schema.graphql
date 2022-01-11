@@ -1,5 +1,4 @@
 type Query {
-    teamName(team: String!): Boolean!
     allTeam: [Team!]
     teamTime(team: String!): Team!
     teamMatch(team: String!): Match!

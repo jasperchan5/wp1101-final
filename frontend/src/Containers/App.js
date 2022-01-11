@@ -33,7 +33,7 @@ function App() {
                   });
                   if(e!==""){
                     if(found || e === 'Admin')
-                      setLogin(true);
+                      setLogin(true);                                                                                                     
                     else message.error('不在名單中');
                   }
                   else{
