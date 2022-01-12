@@ -24,7 +24,7 @@ const Query = {
     },
 
     timeMatch: async (parent, { time }, { db, pubsub }, info) => {
-        const teamdata = await db.TeamDataModel.findOne({time: time});
+        const teamdata = await db.TeamDataModel.find({time: time});
         return teamdata;
     },
 

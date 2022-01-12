@@ -2,7 +2,7 @@ type Query {
     teamName: [Team!]
     allTeam: [Team!]
     teamTime(team: String!): Team!
-    timeMatch(time: String!): Team!
+    timeMatch(time: String!): [Team!]
     teamMatch(team: String!): Match!
     allMatch: [Match!]
 }

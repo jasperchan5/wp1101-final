@@ -29,7 +29,6 @@ const Options = ({ setLogin, teamName }) => {
 
                     return {
                         teamTime: {
-                            team: teamName,
                             time: newTime,
                         },
                     }

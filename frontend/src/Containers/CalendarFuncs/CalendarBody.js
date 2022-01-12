@@ -6,8 +6,6 @@ import { UPDATE_TIME_MUTATION } from "../../graphql/index";
 import { useQuery, useMutation } from "@apollo/client";
 
 export default ({teamName, preTime}) => {
-    
-    
     const [selectedDays, setSelectedDays] = useState([])
     const [selectedDaysInDateForm, setSelectedDaysInDateForm] = useState(preTime)
 
@@ -23,7 +21,52 @@ export default ({teamName, preTime}) => {
         }
     }, []);
     
-    console.log(selectedDays);
+    // console.log(selectedDays);
+
+    const handleOnclick = () => {
+        let resultData = [];
+
+        const n = selectedDays.length;
+
+        for (var i =0; i < n; i++) {
+            resultData.push(selectedDays[i]);
+        }
+       
+        for(let i=0;i<n-1;i++) {
+            for(let j=0;j<n-1-i;j++) {
+                if(resultData[j][0] > resultData[j+1][0]) {
+                    const temp = resultData[j];
+                    resultData[j] = resultData[j+1];
+                    resultData[j+1] = temp;
+                }else if(resultData[j][0] === resultData[j+1][0]) {
+                    if(resultData[j][1] > resultData[j+1][1]) {
+                        const temp = resultData[j];
+                        resultData[j] = resultData[j+1];
+                        resultData[j+1] = temp;
+                    }else if(resultData[j][1] === resultData[j+1][1]) {
+                        if(resultData[j][2] > resultData[j+1][2]) {
+                            const temp = resultData[j];
+                            resultData[j] = resultData[j+1];
+                            resultData[j+1] = temp;
+                        }else if(resultData[j][2] === resultData[j+1][2]) {
+                            resultData.slice(j);
+                        }
+                    }
+                }
+            }
+        }
+
+        let dbData = [];
+        resultData.forEach((i) => {
+            const currDate = `${i[0]}/${i[1]+1}/${i[2]}`;
+            dbData.push(currDate);
+        })
+
+        updateTime({variables: {
+            name: teamName,
+            time: dbData
+        }});
+    }
     
     return(
     <>
@@ -77,16 +120,9 @@ export default ({teamName, preTime}) => {
                 <Button 
                     disabled={selectedDays.length === 0?true:false} 
                     onClick={() => {
-                        // selectedDaysInDateForm.sort((a,b) => a.yyyy/mm/dd yyyymmdd - b.組合)
-                        updateTime({variables: {
-                            name: teamName,
-                            time: selectedDaysInDateForm
-                        }});
+                        handleOnclick();
                     }}
                 >儲存登記結果</Button>
-            </Col>
-            <Col span={12}>
-                <p>請重新整理以載入已填日期！</p>
             </Col>
         </Row>
     </>
