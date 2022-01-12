@@ -1,6 +1,7 @@
 import { Table, Tag, Space } from 'antd';
 
-export default () => {
+export default ({teamName}) => {
+
     const columns = [
         {
           title: '編號',

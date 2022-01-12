@@ -51,7 +51,7 @@ function App() {
   </>
   if(loading) return <p>loading...</p>
 
-  console.log(data);
+  // console.log(data);
 
   return (
     login?<Options setLogin={setLogin} teamName={teamName}/>:LoginPage

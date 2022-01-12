@@ -3,8 +3,10 @@ import { Button, Layout, Modal, DatePicker, Space } from "antd"
 import { Header, Content, Footer } from 'antd/lib/layout/layout';
 import "antd/dist/antd.css";
 import SearchType from './SearchTypePage';
-import CalendarBody from '../CalendarFuncs/CalendarBody';
-import CalendarModal from '../CalendarFuncs/CalendarModal';
+import CalendarBody from './CalendarFuncs/CalendarBody';
+import CalendarModal from './CalendarFuncs/CalendarModal';
+import NewTeamModal from './AdminFuncs/NewTeamModal'
+import DeleteTeamModal from './AdminFuncs/DeleteTeamModal';
 
 const Options = ({ setLogin, teamName }) => {
     //是否是選擇時間登記
@@ -30,7 +32,7 @@ const Options = ({ setLogin, teamName }) => {
                         }}>登出</Button>
                 </Content>
             </Layout>
-            <Footer><h5 style={{fontFamily: "sans-serif"}}>Now log in as: {teamName}</h5></Footer>
+            <Footer><h5 id='identity' style={{fontFamily: "sans-serif"}}>Now log in as: {teamName}</h5></Footer>
         </Layout>
     </>
 
@@ -46,7 +48,7 @@ const Options = ({ setLogin, teamName }) => {
                     setRegister(false);
                     }}>返回功能列表</Button>
             </Footer>
-            <Footer><h5 style={{fontFamily: "sans-serif"}}>Now log in as: {teamName}</h5></Footer>
+            <Footer><h5 id='identity' style={{fontFamily: "sans-serif"}}>Now log in as: {teamName}</h5></Footer>
         </Layout>
     </>
 
@@ -58,15 +60,13 @@ const Options = ({ setLogin, teamName }) => {
                 <Content className='system__calendar'><CalendarModal></CalendarModal><CalendarBody teamName={teamName}></CalendarBody></Content>
             </Layout>
             <Footer className='col-md-12 system__title'>
-                <Button className="system__margins" onClick={() => {
-                    }}>新增隊伍</Button>    
+                <NewTeamModal></NewTeamModal>  
                 <Button className="system__margins" onClick={() => {
                     setRegister(false);
                     }}>返回功能列表</Button>
-                <Button className="system__margins" onClick={() => {
-                    }}>刪除隊伍</Button>
+                <DeleteTeamModal></DeleteTeamModal>
             </Footer>
-            <Footer><h5 style={{fontFamily: "sans-serif"}}>Now log in as: {teamName}</h5></Footer>
+            <Footer><h5 id='identity' style={{fontFamily: "sans-serif"}}>Now log in as: {teamName}</h5></Footer>
         </Layout>
     </>
 

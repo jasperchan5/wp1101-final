@@ -6,7 +6,7 @@ import { gql } from "@apollo/client";
 
 export const CREATE_TEAM_MUTATION = gql`
     mutation createTeam($name: String!) {
-        createTeam(name: name) {
+        createTeam(name: $name) {
             team
             time
         }
@@ -15,13 +15,13 @@ export const CREATE_TEAM_MUTATION = gql`
 
 export const DELETE_TEAM_MUTATION = gql`
     mutation deleteTeam($name: String!) {
-        deleteTeam(name: name)
+        deleteTeam(name: $name)
     }
 `
 
 export const UPDATE_TIME_MUTATION = gql`
     mutation updateTime($name: String!, $time: [String!]!) {
-        updateTime(name: name, time: time) {
+        updateTime(name: $name, time: $time) {
             team
             time
         }
