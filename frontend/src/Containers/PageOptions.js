@@ -8,7 +8,16 @@ import CalendarModal from './CalendarFuncs/CalendarModal';
 import NewTeamModal from './AdminFuncs/NewTeamModal'
 import DeleteTeamModal from './AdminFuncs/DeleteTeamModal';
 
+import { TEAMTIME_QUERY } from "../graphql/index";
+import { useQuery } from "@apollo/client";
+
 const Options = ({ setLogin, teamName }) => {
+    const { data, loading } = useQuery(TEAMTIME_QUERY, {
+        variables: {
+            team: teamName
+        }
+    })
+
     //是否是選擇時間登記
     const [register, setRegister] = useState(false);
     //是否是選擇結果查詢
@@ -36,12 +45,14 @@ const Options = ({ setLogin, teamName }) => {
         </Layout>
     </>
 
+    if(loading) return <p>loading...</p>
+
     const MainPage = <>
         <Layout>
             <Header className="system__title" style={{backgroundColor: "transparent"}}>競賽匹配系統</Header>
             <br></br>
             <Layout>
-                <Content className='system__calendar'><CalendarModal></CalendarModal><CalendarBody teamName={teamName}></CalendarBody></Content>
+                <Content className='system__calendar'><CalendarModal></CalendarModal><CalendarBody teamName={teamName} preTime={data.teamTime.time}></CalendarBody></Content>
             </Layout>
             <Footer className='col-md-12 system__title'>   
                 <Button className="system__margins" onClick={() => {
@@ -57,7 +68,7 @@ const Options = ({ setLogin, teamName }) => {
         <Header className="system__title" style={{backgroundColor: "transparent"}}>競賽匹配系統</Header>
             <br></br>
             <Layout>
-                <Content className='system__calendar'><CalendarModal></CalendarModal><CalendarBody teamName={teamName}></CalendarBody></Content>
+                <Content className='system__calendar'><CalendarModal></CalendarModal><CalendarBody teamName={teamName} preTime={data.teamTime.time}></CalendarBody></Content>
             </Layout>
             <Footer className='col-md-12 system__title'>
                 <NewTeamModal></NewTeamModal>  

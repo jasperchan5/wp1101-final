@@ -2,42 +2,29 @@ import { Calendar, Button, Tag, Row, Col } from "antd";
 import moment from "moment";
 import { useEffect, useState } from "react";
 
-import { ALLTEAM_QUERY } from "../../graphql/queries";
-import { UPDATE_TIME_MUTATION } from "../../graphql/mutation";
+import { UPDATE_TIME_MUTATION } from "../../graphql/index";
 import { useQuery, useMutation } from "@apollo/client";
 
-export default ({teamName}) => {
+export default ({teamName, preTime}) => {
+    
     
     const [selectedDays, setSelectedDays] = useState([])
-    const [selectedDaysInDateForm, setSelectedDaysInDateForm] = useState([])
-    const [currentTeam,setCurrentTeam] = useState({})
+    const [selectedDaysInDateForm, setSelectedDaysInDateForm] = useState(preTime)
 
-    const { data, loading } = useQuery(ALLTEAM_QUERY)
     const [updateTime] = useMutation(UPDATE_TIME_MUTATION)
-
-    // console.log(data);
-    // console.log("Current team: ",currentTeam)
-
     useEffect(() => {
-        // Search for current team in all team data, and update selected date
-        if(selectedDaysInDateForm.length === 0){
-            data.allTeam.forEach((j) => { 
-                if(j.team === teamName){
-                    setCurrentTeam(j);
-                    setSelectedDaysInDateForm(j.time)
-
-                    let curr = []
-                    j.time.forEach((k) => {
-                        let splitedK = k.split("/");
-                        curr.push([parseInt(splitedK[0]),parseInt(splitedK[1])-1,parseInt(splitedK[2])])
-                    })
-                    setSelectedDays([...selectedDays, ...curr])
-                }  
+        if(selectedDaysInDateForm.length !== 0){
+            let curr = []
+            selectedDaysInDateForm.forEach((k) => {
+                let splitedK = k.split("/");
+                curr.push([parseInt(splitedK[0]),parseInt(splitedK[1])-1,parseInt(splitedK[2])])
             })
+            setSelectedDays([...selectedDays, ...curr])
         }
-        console.log(selectedDays);
-    }, [selectedDays,data]); 
-
+    }, []);
+    
+    console.log(selectedDays);
+    
     return(
     <>
         <Calendar 
@@ -90,8 +77,9 @@ export default ({teamName}) => {
                 <Button 
                     disabled={selectedDays.length === 0?true:false} 
                     onClick={() => {
+                        // selectedDaysInDateForm.sort((a,b) => a.yyyy/mm/dd yyyymmdd - b.組合)
                         updateTime({variables: {
-                            name: currentTeam.team,
+                            name: teamName,
                             time: selectedDaysInDateForm
                         }});
                     }}

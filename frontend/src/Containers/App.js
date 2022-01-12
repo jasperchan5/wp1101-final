@@ -8,12 +8,12 @@ import "antd/dist/antd.css";
 
 
 import { useQuery } from '@apollo/client';
-import { ALLTEAM_QUERY } from '../graphql/queries';
+import { TEAMNAME_QUERY } from '../graphql/index';
 
 function App() {
   const [login, setLogin] = useState(false);
   const [teamName, setTeamName] = useState('');
-  const { data, loading } = useQuery(ALLTEAM_QUERY);
+  const { data, loading } = useQuery(TEAMNAME_QUERY);
 
   const LoginPage = <>
       <Layout>
@@ -26,7 +26,7 @@ function App() {
               size='large'
               onSearch={async (e) => {
                   let found = false;
-                  data.allTeam.forEach((i) => {
+                  data.teamName.forEach((i) => {
                     if(i.team === e){
                       found = true;
                     }

@@ -7,6 +7,11 @@
 
 const Query = {
 
+    teamName: async (parent, args, { db, pubsub }, info) => {
+        const teamdata = await db.TeamDataModel.find();
+        return teamdata;
+    },
+
     allTeam: async (parent, args, { db, pubsub }, info) => {
         const teamdata = await db.TeamDataModel.find();
         return teamdata;

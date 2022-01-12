@@ -6,6 +6,14 @@ import { gql } from "@apollo/client";
 // teamMatch(team: String!): Match!
 // allMatch: [Match!]
 
+export const TEAMNAME_QUERY = gql`
+    query TeamNameQuery {
+        teamName {
+            team
+        }
+    }
+`
+
 export const ALLTEAM_QUERY = gql`
     query AllTeamQuery {
         allTeam {
