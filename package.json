@@ -7,7 +7,7 @@
     "start": "cd frontend && yarn start",
     "build": "cd frontend && yarn build",
     "deploy": "cd frontend && npm run build",
-    "server": "cd backend && yarn server"
+    "server": "cd backend && yarn start"
   },
   "dependencies": {
     "gh-pages": "^3.2.3",
