@@ -56,8 +56,6 @@ export const ALLMATCH_QUERY = gql`
     query AllMatchQuery {
         allMatch {
             matchName
-            team_1
-            team_2
             time
         }
     }

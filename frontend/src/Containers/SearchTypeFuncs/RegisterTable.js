@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/client';
 
 export default ({teamName}) => {
     const { data, loading } = useQuery(ALLTEAM_QUERY);
+    console.log(data);
     const columns = [
         {
           title: '隊名',

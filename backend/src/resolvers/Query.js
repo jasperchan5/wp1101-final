@@ -36,6 +36,7 @@ const Query = {
 
     allMatch: async (parent, args, { db, pubsub }, info) => {
         const matchdata = await db.MatchModel.find();
+        // console.log(matchdata);
         return matchdata;
     },
 }

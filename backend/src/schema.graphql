@@ -11,7 +11,7 @@ type Mutation {
   createTeam(name: String!): Team!
   deleteTeam(name: String!): Boolean!
   updateTime(name: String!, time: [String!]!): Team!
-#   createMatch: [Match!]
+  createMatch: Match!
 }
 
 type Subscription {
