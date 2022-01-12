@@ -27,6 +27,11 @@ const Mutation = {
         if(!name) throw new Error("Missing team name in mutation updateTime");
         if(!time) throw new Error("Missing team time in mutation updateTime");
         const existing = await db.TeamDataModel.findOneAndUpdate({team: name}, {time: time}, {new: true});
+        
+        pubsub.publish(`team ${name}`, {
+            time: time,
+        });
+        
         return existing;
     },
 
