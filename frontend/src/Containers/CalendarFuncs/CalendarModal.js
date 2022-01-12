@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Button, DatePicker, Space } from 'antd';
 import moment from 'moment';
-import RegisterTable from '../SearchTypeFuncs/RegisterTable';
+import CalendarTable from './CalendarTable';
 
 const CalendarModal = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -32,7 +32,7 @@ const CalendarModal = () => {
             <br></br>
             <Space direction='vertical' className='system__table'>
                 <div className='system__title' style={{fontSize: "0.5cm"}}>{currentDate}</div>
-                <RegisterTable></RegisterTable>
+                <CalendarTable currentDate={currentDate}></CalendarTable>
             </Space>
         </Modal>
       </>

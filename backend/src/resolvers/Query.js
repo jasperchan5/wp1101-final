@@ -23,6 +23,11 @@ const Query = {
         return teamdata;
     },
 
+    timeMatch: async (parent, { time }, { db, pubsub }, info) => {
+        const teamdata = await db.TeamDataModel.findOne({time: time});
+        return teamdata;
+    },
+
     teamMatch: async (parent, { team }, { db, pubsub }, info) => {
         if(!team) throw new Error("Missing team name in query teamMatch");
         const matchdata = await db.MatchModel.findOne({team: team});

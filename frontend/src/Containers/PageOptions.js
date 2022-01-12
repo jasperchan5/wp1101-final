@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Layout, Modal, DatePicker, Space } from "antd"
+import { Button, Layout, Space } from "antd"
 import { Header, Content, Footer } from 'antd/lib/layout/layout';
 import "antd/dist/antd.css";
 import SearchType from './SearchTypePage';
-import CalendarBody from './CalendarFuncs/CalendarBody';
-import CalendarModal from './CalendarFuncs/CalendarModal';
-import NewTeamModal from './AdminFuncs/NewTeamModal'
-import DeleteTeamModal from './AdminFuncs/DeleteTeamModal';
+import MainPage from './Component/MainPage';
+import AdminMainPage from './Component/AdminMainPage';
 
 import { TEAMTIME_QUERY } from "../graphql/index";
 import { useQuery } from "@apollo/client";
@@ -22,7 +20,6 @@ const Options = ({ setLogin, teamName }) => {
     const [register, setRegister] = useState(false);
     //是否是選擇結果查詢
     const [search, setSearch] = useState(false);
-    const [isModalVisible,setIsModalVisible] = useState(false);
 
     const OptionPage = <>
         <Layout>
@@ -45,44 +42,10 @@ const Options = ({ setLogin, teamName }) => {
         </Layout>
     </>
 
-    if(loading) return <p>loading...</p>
-
-    const MainPage = <>
-        <Layout>
-            <Header className="system__title" style={{backgroundColor: "transparent"}}>競賽匹配系統</Header>
-            <br></br>
-            <Layout>
-                <Content className='system__calendar'><CalendarModal></CalendarModal><CalendarBody teamName={teamName} preTime={data.teamTime.time}></CalendarBody></Content>
-            </Layout>
-            <Footer className='col-md-12 system__title'>   
-                <Button className="system__margins" onClick={() => {
-                    setRegister(false);
-                    }}>返回功能列表</Button>
-            </Footer>
-            <Footer><h5 id='identity' style={{fontFamily: "sans-serif"}}>Now log in as: {teamName}</h5></Footer>
-        </Layout>
-    </>
-
-    const AdminMainPage = <>
-        <Layout>
-        <Header className="system__title" style={{backgroundColor: "transparent"}}>競賽匹配系統</Header>
-            <br></br>
-            <Layout>
-                <Content className='system__calendar'><CalendarModal></CalendarModal><CalendarBody teamName={teamName} preTime={data.teamTime.time}></CalendarBody></Content>
-            </Layout>
-            <Footer className='col-md-12 system__title'>
-                <NewTeamModal></NewTeamModal>  
-                <Button className="system__margins" onClick={() => {
-                    setRegister(false);
-                    }}>返回功能列表</Button>
-                <DeleteTeamModal></DeleteTeamModal>
-            </Footer>
-            <Footer><h5 id='identity' style={{fontFamily: "sans-serif"}}>Now log in as: {teamName}</h5></Footer>
-        </Layout>
-    </>
+    if(loading) return <p>loading...</p>    
 
     return (<>
-        {register?(teamName === "Admin"?AdminMainPage:MainPage):(search?<SearchType setSearch={setSearch} teamName={teamName}/>:OptionPage)}
+        {register?(teamName === "Admin"?<AdminMainPage setRegister={setRegister} teamName={teamName} />:<MainPage setRegister={setRegister} teamName={teamName} data={data}/>):(search?<SearchType setSearch={setSearch} teamName={teamName}/>:OptionPage)}
     </>)
 }
 
