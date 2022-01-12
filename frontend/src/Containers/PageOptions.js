@@ -6,15 +6,37 @@ import SearchType from './SearchTypePage';
 import MainPage from './Component/MainPage';
 import AdminMainPage from './Component/AdminMainPage';
 
-import { TEAMTIME_QUERY } from "../graphql/index";
+import { TEAMTIME_QUERY, TIME_SUBSCRIPTION } from "../graphql/index";
 import { useQuery } from "@apollo/client";
 
 const Options = ({ setLogin, teamName }) => {
-    const { data, loading } = useQuery(TEAMTIME_QUERY, {
+    const { data, loading, subscribeToMore } = useQuery(TEAMTIME_QUERY, {
         variables: {
             team: teamName
         }
     })
+
+    useEffect(() => {
+        try {
+            subscribeToMore({
+                document: TIME_SUBSCRIPTION,
+                variables: { team: teamName },
+                updateQuery: (prev, { subscriptionData }) => {
+                    if(!subscriptionData) return prev;
+                    const newTime = subscriptionData.data.time;
+
+                    console.log(prev);
+
+                    return {
+                        teamTime: {
+                            team: teamName,
+                            time: newTime,
+                        },
+                    }
+                }
+            })
+        } catch (e) {}
+    }, [subscribeToMore])
 
     //是否是選擇時間登記
     const [register, setRegister] = useState(false);
