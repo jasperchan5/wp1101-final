@@ -34,7 +34,6 @@ const SearchType = ({setSearch, teamName}) => {
                     </Card>
                 </Content>
             </Layout>
-            <Footer><h5 id='identity' style={{fontFamily: "sans-serif"}}>Now log in as: {teamName}</h5></Footer>
         </Layout>
     </>
     //查詢登記紀錄頁面
@@ -47,10 +46,9 @@ const SearchType = ({setSearch, teamName}) => {
             <Content><RegisterTable teamName={teamName}></RegisterTable></Content>
         </Layout>
         <Footer className="system__app"><Button className="system__margins" onClick={() => {
-                        setsearchAll(false);
-                        }}>返回查詢選項</Button>
-            </Footer>
-        <Footer><h5 id='identity' style={{fontFamily: "sans-serif"}}>Now log in as: {teamName}</h5></Footer>
+                setsearchAll(false);
+                }}>返回查詢選項</Button>
+        </Footer>
     </Layout>
     </>
     //查詢已匹配結果頁面
@@ -64,10 +62,9 @@ const SearchType = ({setSearch, teamName}) => {
         </Layout>
         <Footer className="system__app">
         <Button className="system__margins" onClick={() => {
-                        setsearchSuccess(false);
-                        }}>返回查詢選項</Button>
+                setsearchSuccess(false);
+                }}>返回查詢選項</Button>
         </Footer>
-        <Footer><h5 id='identity' style={{fontFamily: "sans-serif"}}>Now log in as: {teamName}</h5></Footer>
     </Layout>
     </>
 

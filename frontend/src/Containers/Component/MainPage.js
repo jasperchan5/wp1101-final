@@ -20,7 +20,6 @@ const MainPage = ({setRegister, teamName, data}) => <>
                 setRegister(false);
                 }}>返回功能列表</Button>
         </Footer>
-        <Footer><h5 id='identity' style={{fontFamily: "sans-serif"}}>Now log in as: {teamName}</h5></Footer>
     </Layout>
 </>
 

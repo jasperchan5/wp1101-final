@@ -24,7 +24,6 @@ const AdminMainPage = ({setRegister, teamName}) => <>
                     }}>返回功能列表</Button>
                 <DeleteTeamModal></DeleteTeamModal>
             </Footer>
-            <Footer><h5 id='identity' style={{fontFamily: "sans-serif"}}>Now log in as: {teamName}</h5></Footer>
         </Layout>
     </>
     
