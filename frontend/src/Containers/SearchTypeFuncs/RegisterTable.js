@@ -1,4 +1,4 @@
-import { Table, Tag, Space } from 'antd';
+import { Table, Tag, Space, message } from 'antd';
 
 import { ALLTEAM_QUERY } from '../../graphql/queries';
 import { useQuery } from '@apollo/client';
@@ -27,7 +27,7 @@ export default ({teamName}) => {
         }
       ];
       
-      if(loading) return <p>loading...</p>
+      if(loading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
 
       return(
           <Table columns={columns} dataSource={data.allTeam} pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['1', '2', '5']}}></Table>

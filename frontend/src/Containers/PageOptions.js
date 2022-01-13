@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Col, Layout, Row, Space } from "antd"
+import { Button, Card, Col, Layout, Row, Space, message } from "antd"
 import { Header, Content, Footer } from 'antd/lib/layout/layout';
 import "antd/dist/antd.css";
 import SearchType from './SearchTypePage';
@@ -68,7 +68,7 @@ const Options = ({ setLogin, teamName }) => {
         </Layout>
     </>
 
-    if(loading) return <p>loading...</p>    
+    if(loading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
 
     return (<>
         {register?(teamName === "Admin"?<AdminMainPage setRegister={setRegister} teamName={teamName} />:<MainPage setRegister={setRegister} teamName={teamName} data={data}/>):(search?<SearchType setSearch={setSearch} teamName={teamName}/>:OptionPage)}
