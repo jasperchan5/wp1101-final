@@ -19,7 +19,7 @@ const CalendarModal = () => {
 
     return (
       <>
-        <Button type="primary" onClick={showModal} style={{backgroundColor: "gray", border:"black 1px solid"}}>
+        <Button type="primary" onClick={showModal} style={{backgroundColor: "#0050b3", border:"black 1px solid"}}>
             查看各隊登記詳情
         </Button>
         <Modal visible={isModalVisible} onCancel={handleCancel} footer={null} bodyStyle={{height: "450px"}}>

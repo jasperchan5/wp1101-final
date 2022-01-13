@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Layout, Modal, DatePicker, Space } from "antd"
+import { Button, Layout, Modal, DatePicker, Space, Row, Col } from "antd"
 import { Header, Content, Footer } from 'antd/lib/layout/layout';
 import "antd/dist/antd.css";
 import CalendarBody from '../CalendarFuncs/CalendarBody';
 import CalendarModal from '../CalendarFuncs/CalendarModal';
 import NewTeamModal from '../AdminFuncs/NewTeamModal'
 import DeleteTeamModal from '../AdminFuncs/DeleteTeamModal';
+import LoginIdentity from '../LoginIdentity';
 
 const AdminMainPage = ({setRegister, teamName}) => <>
         <Layout>
-        <Header className="system__title" style={{backgroundColor: "transparent"}}>競賽匹配系統</Header>
+            <Row>
+                <Col md={24}><LoginIdentity teamName={teamName}></LoginIdentity><Header className="system__title" style={{backgroundColor: "transparent"}}>競賽匹配系統</Header></Col>
+            </Row>
             <br></br>
             <Layout>
                 <Content className='system__calendar'><CalendarModal></CalendarModal><CalendarBody teamName={teamName} preTime={[]}></CalendarBody></Content>
