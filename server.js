@@ -22,6 +22,6 @@ const server = new GraphQLServer({
 
 mongo();
 
-server.start({ port: process.env.PORT | 5000 }, () => {
-  console.log(`The server is up on port ${process.env.PORT | 5000}!`);
+server.start({ port: process.env.PORT | 80 }, () => {
+  console.log(`The server is up on port ${process.env.PORT | 80}!`);
 });
