@@ -1,4 +1,3 @@
-import { GraphQLServer, PubSub } from 'graphql-yoga';
 import express from "express";
 import { ApolloServer, PubSub } from "apollo-server-express";
 import { importSchema } from "graphql-import";
@@ -16,9 +15,10 @@ import Mutation from "./backend/resolvers/Mutation.js";
 import Subscription from "./backend/resolvers/Subscription.js";
 import mongo from "./backend/mongo.js";
 import apiRoute from "./backend/route/api.js";
+import wakeUpDyno from './backend/route/wakeUpDyno.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 5000;
 
 const typeDefs = importSchema("./backend/schema.graphql");
 const pubsub = new PubSub();
@@ -52,6 +52,8 @@ server.installSubscriptionHandlers(httpServer);
 mongo();
 
 httpServer.listen(port, () => {
+  const DYNO_URL = "https://wp1101-final.herokuapp.com/";
+  wakeUpDyno(DYNO_URL);
   console.log(`🚀 Server Ready at ${port}! 🚀`);
   console.log(`Graphql Port at ${port}${server.subscriptionsPath}`);
 });
