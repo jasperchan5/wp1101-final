@@ -4,10 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start-react": "cd frontend && yarn start",
-    "build": "cd frontend && yarn install && yarn build",
+    "start": "cd frontend && yarn start",
+    "build": "cd frontend && yarn build",
     "deploy": "cd frontend && npm run build",
-    "start": "cd backend && node index.js"
+    "server": "cd backend && yarn start"
   },
   "dependencies": {
     "gh-pages": "^3.2.3",
