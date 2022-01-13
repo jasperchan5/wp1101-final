@@ -62,11 +62,12 @@ const Mutation = {
                 t1.split("/").map((e) => t1Str += e)
                 let t1Num = parseInt(t1Str)
                 // console.log(t1Str);
+                // console.log(t1Num);
                 //check the date is not in matchedTime and the date is later than the date(continue)
-                if(t1Num >= currentDateNum && matchedTime.indexOf(t1) === -1){
+                if(t1Num >= currentDateNum){
                     allUser.forEach((teamData2)=>{
                         if(teamData2.team !== teamData.team){
-                            teamData2.time.forEach((t2) => {
+                            teamData2.time.forEach(async(t2) => {
                                 //字元切割
                                 let t2Str = "" 
                                 t2.split("/").map((e) => t2Str += e)
@@ -76,15 +77,19 @@ const Mutation = {
                                     //console.log(t1Num,t2Num);
                                     //console.log(`Save match ${teamData.team}_${teamData2.team} to db`);
                                     //if db 沒有 "a_b"match
-                                    if(!db.MatchModel.findOne({matchName: `${teamData.team}_${teamData2.team}`})){
-                                        // console.log(`Save match ${t1}_${t2} to db`);
-                                        //存入"a_b"match(t1,t2)
-                                        const matchdata = new db.MatchModel({matchName: `${teamData.team}_${teamData2.team}`,time: t1});
-                                        //console.log(matchdata);
-                                        matchdata.save();
-                                        matchedTime.push(t1);
-                                        //console.log(matchedTime);
-                                        return matchdata;
+                                    let teamArr = [teamData.team,teamData2.team];
+                                    teamArr.sort();
+                                    if(!await db.MatchModel.findOne({matchName: `${teamArr[0]}_${teamArr[1]}`})){
+                                        if(!matchedTime.some((e) => e === t1)){
+                                            console.log(`Save match ${teamArr[0]}_${teamArr[1]}, date:${t1} to db`);
+                                            //存入"a_b"match(t1,t2)
+                                            const matchdata = new db.MatchModel({matchName: `${teamArr[0]}_${teamArr[1]}`,time: t1});
+                                            // console.log(matchdata);
+                                            matchdata.save();
+                                            matchedTime.push(t1);
+                                            // console.log(matchedTime);
+                                            return matchdata;
+                                        }
                                     }
                                 }
                             })

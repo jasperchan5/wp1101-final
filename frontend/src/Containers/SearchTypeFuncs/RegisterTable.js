@@ -11,12 +11,14 @@ export default ({teamName}) => {
           title: '隊名',
           dataIndex: 'team',
           key: 'team',
+          width: "15%",
           render: text => <a>{text}</a>,
         },
         {
           title: '登記時間',
           dataIndex: 'time',
           key: 'time',
+          width: "85%",
           render: times => <>
             {times.map((e) => {
               return(<Tag>{e}</Tag>)
