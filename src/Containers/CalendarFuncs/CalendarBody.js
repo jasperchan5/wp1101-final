@@ -1,4 +1,4 @@
-import { Calendar, Button, Tag, Row, Col, message } from "antd";
+import { Calendar, Button, Tag, Row, Col } from "antd";
 import moment from "moment";
 import { useEffect, useState } from "react";
 
@@ -66,8 +66,6 @@ export default ({teamName, preTime}) => {
             name: teamName,
             time: dbData
         }});
-
-        message.success("已儲存日期資訊！")
     }
     
     return(

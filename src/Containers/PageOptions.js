@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Col, Layout, Row, Space, message } from "antd"
+import { Button, Layout, Space } from "antd"
 import { Header, Content, Footer } from 'antd/lib/layout/layout';
 import "antd/dist/antd.css";
 import SearchType from './SearchTypePage';
 import MainPage from './Component/MainPage';
 import AdminMainPage from './Component/AdminMainPage';
-import LoginIdentity from './LoginIdentity';
 
 import { TEAMTIME_QUERY, TIME_SUBSCRIPTION } from "../graphql/index";
 import { useQuery } from "@apollo/client";
@@ -45,30 +44,26 @@ const Options = ({ setLogin, teamName }) => {
 
     const OptionPage = <>
         <Layout>
-            <Row>
-                <Col md={24}><LoginIdentity teamName={teamName}></LoginIdentity><Header className="system__title" style={{backgroundColor: "transparent"}}>功能列表</Header></Col>
-            </Row>
-            <Layout> 
+            <Header className="system__title" style={{backgroundColor: "transparent"}}>功能列表</Header>
+            <Layout > 
                 <Content className="system__app">
-                    <Card>
-                        <Row justify='center'><Button className="system__margins" onClick={() => {
-                            setRegister(true);
-                            }}>登記</Button></Row>
-                        <Row justify='center'><Button className="system__margins" onClick={() => {
-                            setSearch(true);
-                            }}>查詢</Button></Row>
-                        <Row justify='center'><Button className="system__margins" onClick={() => {
-                            setLogin(false);
-                            setRegister(false);
-                            }}>登出</Button></Row>
-                    </Card>
+                    <Button className="system__margins" onClick={() => {
+                        setRegister(true);
+                        }}>登記</Button>
+                    <Button className="system__margins" onClick={() => {
+                        setSearch(true);
+                        }}>查詢</Button>
+                    <Button className="system__margins" onClick={() => {
+                        setLogin(false);
+                        setRegister(false);
+                        }}>登出</Button>
                 </Content>
             </Layout>
-            <Footer></Footer>
+            <Footer><h5 id='identity' style={{fontFamily: "sans-serif"}}>Now log in as: {teamName}</h5></Footer>
         </Layout>
     </>
 
-    if(loading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
+    if(loading) return <p>loading...</p>    
 
     return (<>
         {register?(teamName === "Admin"?<AdminMainPage setRegister={setRegister} teamName={teamName} />:<MainPage setRegister={setRegister} teamName={teamName} data={data}/>):(search?<SearchType setSearch={setSearch} teamName={teamName}/>:OptionPage)}

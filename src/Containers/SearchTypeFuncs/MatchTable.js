@@ -1,12 +1,10 @@
-import { Table, Tag, Space, message } from 'antd';
+import { Table, Tag, Space } from 'antd';
 
 import { ALLMATCH_QUERY } from '../../graphql/queries';
 import { useQuery } from '@apollo/client';
-import { useState } from 'react';
 
 export default ({teamName}) => {
     const { data, loading } = useQuery(ALLMATCH_QUERY);
-    const [nowPercent, setNowPercent] = useState(0)
     console.log(data);
     const columns = [
         {
@@ -23,7 +21,7 @@ export default ({teamName}) => {
         }
       ]
 
-      if(loading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
+      if(loading) return <p>loading...</p>
 
       return(
           <Table columns={columns} dataSource={data.allMatch} pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['1', '2', '5']}}></Table>

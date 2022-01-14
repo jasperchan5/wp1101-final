@@ -2,7 +2,8 @@
 // deleteTeam(name: String!): Team!
 // updateTime(name: String!, time: [String!]!): Team!
 // createMatch: [Match!]
-import moment from "moment";
+
+import moment from "moment"
 
 const Mutation = {
     async createTeam(parent, { name }, { db, pubsub }, info){
@@ -35,6 +36,7 @@ const Mutation = {
         
         return existing;
     },
+
     async createMatch(parent, args, { db, pubsub }, info){
         var matchedTime = []
         const currentTime = moment();
@@ -110,11 +112,5 @@ const Mutation = {
             //
     }
 }
+
 export default Mutation;
-
-
-
-
-
-                
-            
