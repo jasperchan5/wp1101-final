@@ -27,3 +27,12 @@ export const UPDATE_TIME_MUTATION = gql`
         }
     }
 `
+
+export const CREATE_MATCH_MUTATION = gql`
+    mutation createMatch {
+        createMatch {
+            matchName
+            time
+        }
+    }
+`

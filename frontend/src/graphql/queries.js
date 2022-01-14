@@ -32,6 +32,15 @@ export const TEAMTIME_QUERY = gql`
     }
 `
 
+export const TIMEMATCH_QUERY = gql`
+    query TimeMatchQuery($time: String!) {
+        timeMatch(time: $time) {
+            team
+            time
+        }
+    }
+`
+
 export const TEAMMATCH_QUERY = gql`
     query TeamMatchQuery($team: String!) {
         teamMatch(team: $team) {
@@ -47,8 +56,6 @@ export const ALLMATCH_QUERY = gql`
     query AllMatchQuery {
         allMatch {
             matchName
-            team_1
-            team_2
             time
         }
     }
