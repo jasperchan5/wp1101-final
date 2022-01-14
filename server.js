@@ -18,7 +18,7 @@ import apiRoute from "./backend/route/api.js";
 import wakeUpDyno from './backend/route/wakeUpDyno.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 80;
 
 const typeDefs = importSchema("./backend/schema.graphql");
 const pubsub = new PubSub();
