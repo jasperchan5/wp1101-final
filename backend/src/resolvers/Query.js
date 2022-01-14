@@ -23,6 +23,11 @@ const Query = {
         return teamdata;
     },
 
+    timeMatch: async (parent, { time }, { db, pubsub }, info) => {
+        const teamdata = await db.TeamDataModel.find({time: time});
+        return teamdata;
+    },
+
     teamMatch: async (parent, { team }, { db, pubsub }, info) => {
         if(!team) throw new Error("Missing team name in query teamMatch");
         const matchdata = await db.MatchModel.findOne({team: team});
@@ -31,6 +36,7 @@ const Query = {
 
     allMatch: async (parent, args, { db, pubsub }, info) => {
         const matchdata = await db.MatchModel.find();
+        // console.log(matchdata);
         return matchdata;
     },
 }

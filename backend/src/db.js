@@ -14,8 +14,7 @@ const TeamDataSchema = new Schema({
 const TeamDataModel = mongoose.model('teamdata',TeamDataSchema);
 
 const MatchSchema = new Schema({
-    team_1: { type: String },
-    team_2: { type: String },
+    matchName: { type: String },
     time: { type: String }
 });
 const MatchModel = mongoose.model('match',MatchSchema);

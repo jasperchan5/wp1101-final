@@ -2,6 +2,7 @@ type Query {
     teamName: [Team!]
     allTeam: [Team!]
     teamTime(team: String!): Team!
+    timeMatch(time: String!): [Team!]
     teamMatch(team: String!): Match!
     allMatch: [Match!]
 }
@@ -10,7 +11,11 @@ type Mutation {
   createTeam(name: String!): Team!
   deleteTeam(name: String!): Boolean!
   updateTime(name: String!, time: [String!]!): Team!
-#   createMatch: [Match!]
+  createMatch: Match!
+}
+
+type Subscription {
+  time(team: String!): [String!]
 }
 
 type Team {
