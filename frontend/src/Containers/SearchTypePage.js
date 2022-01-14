@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 //import Calendar from './Calendar/Calendar.js';
 import { Button, Card, Col, Layout, Row} from "antd"
+import { SendOutlined, LogoutOutlined, SearchOutlined } from '@ant-design/icons';
 import "antd/dist/antd.css";
 import { Header,Content,Footer } from 'antd/lib/layout/layout';
 import MatchTable from './SearchTypeFuncs/MatchTable';
@@ -21,18 +22,31 @@ const SearchType = ({setSearch, teamName}) => {
             </Row>
             <Layout>
                 <Content className="system__app">
-                    <Card>
-                        <Row justify='center'><Button className="system__margins" onClick={() => {
-                            setsearchAll(true);
-                            }}>查詢登記紀錄</Button></Row>
-                        <Row justify='center'><Button className="system__margins" onClick={() => {
-                            setsearchSuccess(true);
-                            }}>查詢已匹配結果</Button></Row>
-                        <Row justify='center'><Button className="system__margins" onClick={() => {
-                            setSearch(false);
-                            }}>返回功能列表</Button></Row>
-                    </Card>
+                    <Row>
+                        <Col md={8}> 
+                            <Card title={<div style={{textAlign: "center", fontWeight: "bold"}}>查詢登記紀錄</div>}>
+                                <Row justify='center'><Button className="system__margins" onClick={() => {
+                                        setsearchAll(true);
+                                        }} icon={<SearchOutlined/>}></Button></Row>
+                            </Card>
+                        </Col>
+                        <Col md={8}>
+                            <Card title={<div style={{textAlign: "center", fontWeight: "bold"}}>返回功能列表</div>}>
+                                <Row justify='center'><Button className="system__margins" onClick={() => {
+                                        setSearch(false);
+                                        }} icon={<LogoutOutlined/>}></Button></Row>
+                            </Card>
+                        </Col>
+                        <Col md={8}>
+                            <Card title={<div style={{textAlign: "center", fontWeight: "bold"}}>查詢匹配結果</div>}>
+                                <Row justify='center'><Button className="system__margins" onClick={() => {
+                                        setsearchSuccess(true);
+                                        }} icon={<SearchOutlined/>}></Button></Row>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Content>
+                <Footer></Footer>
             </Layout>
         </Layout>
     </>

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import '../App.css';
 import '../bootstrap.css';
 import Options from './PageOptions';
-import { Input, Layout, message, Tag, Card, Image } from "antd";
+import { Input, Layout, message, Tag, Card, Image, Space } from "antd";
+import { LoginOutlined } from '@ant-design/icons';
 import { Header, Content, Footer } from 'antd/lib/layout/layout';
 import "antd/dist/antd.css";
 
@@ -24,7 +25,7 @@ function App() {
               <Content>
                 <Input.Search 
                 placeholder="輸入隊名..."
-                enterButton="登入"
+                enterButton={<LoginOutlined style={{display: "block"}}/>}
                 size='large'
                 onSearch={async (e) => {
                     let found = false;

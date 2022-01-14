@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Layout, Row, Space, message } from "antd"
+import { SendOutlined, LogoutOutlined, SearchOutlined } from '@ant-design/icons';
 import { Header, Content, Footer } from 'antd/lib/layout/layout';
 import "antd/dist/antd.css";
 import SearchType from './SearchTypePage';
@@ -50,18 +51,31 @@ const Options = ({ setLogin, teamName }) => {
             </Row>
             <Layout> 
                 <Content className="system__app">
-                    <Card>
-                        <Row justify='center'><Button className="system__margins" onClick={() => {
-                            setRegister(true);
-                            }}>登記</Button></Row>
-                        <Row justify='center'><Button className="system__margins" onClick={() => {
-                            setSearch(true);
-                            }}>查詢</Button></Row>
-                        <Row justify='center'><Button className="system__margins" onClick={() => {
-                            setLogin(false);
-                            setRegister(false);
-                            }}>登出</Button></Row>
-                    </Card>
+                    <Row>
+                        <Col md={8}> 
+                            <Card title={<div style={{textAlign: "center", fontWeight: "bold"}}>登記</div>}>
+                                <Row justify='center'>
+                                    <Button className="system__margins" onClick={() => {
+                                    setRegister(true);
+                                    }} icon={<SendOutlined />}></Button></Row>
+                            </Card>
+                        </Col>
+                        <Col md={8}>
+                            <Card title={<div style={{textAlign: "center", fontWeight: "bold"}}>查詢</div>}>
+                                <Row justify='center'><Button className="system__margins" onClick={() => {
+                                        setSearch(true);
+                                        }} icon={<SearchOutlined />}></Button></Row>
+                            </Card>
+                        </Col>
+                        <Col md={8}>
+                            <Card title={<div style={{textAlign: "center", fontWeight: "bold"}}>登出</div>}>
+                                <Row justify='center'><Button className="system__margins" onClick={() => {
+                                        setLogin(false);
+                                        setRegister(false);
+                                        }} icon={<LogoutOutlined />}></Button></Row>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Content>
             </Layout>
             <Footer></Footer>
@@ -71,7 +85,7 @@ const Options = ({ setLogin, teamName }) => {
     if(loading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
 
     return (<>
-        {register?(teamName === "Admin"?<AdminMainPage setRegister={setRegister} teamName={teamName} />:<MainPage setRegister={setRegister} teamName={teamName} data={data}/>):(search?<SearchType setSearch={setSearch} teamName={teamName}/>:OptionPage)}
+        {register?(teamName === "Admin"?<AdminMainPage setRegister={setRegister} teamName={teamName} registerClosed={true}/>:<MainPage setRegister={setRegister} teamName={teamName} data={data}/>):(search?<SearchType setSearch={setSearch} teamName={teamName}/>:OptionPage)}
     </>)
 }
 
