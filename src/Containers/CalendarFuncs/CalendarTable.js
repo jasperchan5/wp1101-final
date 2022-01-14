@@ -1,4 +1,4 @@
-import { Table, Tag, Space } from 'antd';
+import { Table, Tag, Space, message } from 'antd';
 
 import { TIMEMATCH_QUERY } from '../../graphql/queries';
 import { useQuery } from '@apollo/client';
@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/client';
 export default ({currentDate}) => {
     const { data, loading } = useQuery(TIMEMATCH_QUERY, {variables:{time: currentDate}});
     
-    if(loading) return <p>loading...</p>
+    if(loading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
 
     const columns = [
         {
