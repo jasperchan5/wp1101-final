@@ -6,6 +6,11 @@ const Subscription = {
                 return pubsub.asyncIterator(`team ${team}`);
         },
     },
+    adminData: {
+        subscribe: (parent, args, { pubsub }) => {
+            return pubsub.asyncIterator('adminData');
+        },
+    },
 };
 
 export default Subscription;

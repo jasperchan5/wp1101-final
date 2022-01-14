@@ -7,6 +7,17 @@
 
 const Query = {
 
+    adminData: async (parent, args, { db, pubsub }, info) => {
+        const admindata = await db.AdminDataModel.findOne({admin: "Admin"});
+        if(admindata) {
+            return admindata;
+        }else if(!admindata) {
+            const newAdmindata = new db.AdminDataModel({admin: "Admin", isRegisterClosed: false});
+            newAdmindata.save();
+            return newAdmindata;
+        }
+    },
+    
     teamName: async (parent, args, { db, pubsub }, info) => {
         const teamdata = await db.TeamDataModel.find();
         return teamdata;

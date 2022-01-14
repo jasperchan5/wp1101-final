@@ -1,11 +1,11 @@
-import { Calendar, Button, Tag, Row, Col, message } from "antd";
+import { Calendar, Button, Row, Col, message } from "antd";
 import moment from "moment";
 import { useEffect, useState } from "react";
 
 import { UPDATE_TIME_MUTATION } from "../../graphql/index";
-import { useQuery, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 
-export default ({teamName, preTime}) => {
+export default ({teamName, preTime, registerClosed}) => {
     const [selectedDays, setSelectedDays] = useState([])
     const [selectedDaysInDateForm, setSelectedDaysInDateForm] = useState(preTime)
 
@@ -120,7 +120,7 @@ export default ({teamName, preTime}) => {
         <Row>
             <Col span={6}>
                 <Button 
-                    disabled={selectedDays.length === 0?true:false} 
+                    disabled={registerClosed || (selectedDays.length === 0?true:false)} 
                     onClick={() => {
                         handleOnclick();
                     }}

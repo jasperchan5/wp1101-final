@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Modal, Button, DatePicker, Space } from 'antd';
 import moment from 'moment';
 import CalendarTable from './CalendarTable';

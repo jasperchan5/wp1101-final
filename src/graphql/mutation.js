@@ -4,6 +4,15 @@
 
 import { gql } from "@apollo/client";
 
+export const UPDATE_ADMINDATA_MUTATION = gql`
+    mutation updateAdminData {
+        updateAdminData {
+            admin
+            isRegisterClosed
+        }
+    }
+`
+
 export const CREATE_TEAM_MUTATION = gql`
     mutation createTeam($name: String!) {
         createTeam(name: $name) {

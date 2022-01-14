@@ -2,10 +2,11 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-// const TeamNameSchema = new Schema({
-//     team: { type: String },
-// });
-// const TeamNameModel = mongoose.model('teamname',TeamNameSchema);
+const AdminDataSchema = new Schema({
+    admin: { type: String },
+    isRegisterClosed: { type: Boolean },
+});
+const AdminDataModel = mongoose.model('admindata', AdminDataSchema);
 
 const TeamDataSchema = new Schema({
     team: { type: String },
@@ -19,4 +20,4 @@ const MatchSchema = new Schema({
 });
 const MatchModel = mongoose.model('match',MatchSchema);
 
-export { /*TeamNameModel,*/ TeamDataModel, MatchModel };
+export { AdminDataModel, TeamDataModel, MatchModel };

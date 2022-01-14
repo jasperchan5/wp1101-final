@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Modal, Button, Space, Input, message } from 'antd';
+import React, { useState } from 'react';
+import { Modal, Button, Input, message } from 'antd';
 import { DELETE_TEAM_MUTATION } from '../../graphql/mutation';
 import { useMutation } from '@apollo/client';
 

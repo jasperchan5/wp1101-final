@@ -1,41 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Layout, Row, Col, Checkbox, Space } from "antd"
+import { Button, Layout, Row, Col, Table, message, Tag } from "antd"
 import { Header, Content, Footer } from 'antd/lib/layout/layout';
 import "antd/dist/antd.css";
-import CalendarBody from '../CalendarFuncs/CalendarBody';
-import CalendarModal from '../CalendarFuncs/CalendarModal';
-import NewTeamModal from '../AdminFuncs/NewTeamModal'
-import DeleteTeamModal from '../AdminFuncs/DeleteTeamModal';
 import LoginIdentity from '../LoginIdentity';
+import AdminMenu from '../AdminFuncs/AdminMenu';
 
-const AdminMainPage = ({setRegister, teamName, registerClosed}) => <>
+import { TEAMNAME_QUERY } from '../../graphql';
+import { useQuery } from '@apollo/client'
+
+
+
+const AdminMainPage = ({setRegister, teamName, registerClosed}) => {
+    const { data, loading } = useQuery(TEAMNAME_QUERY);
+    if(loading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
+
+    const columns = [{
+        title: '隊伍列表',
+        dataIndex: 'team',
+        key: 'team',
+        render: team => <Tag>{team}</Tag>
+    }];
+    
+    return(
+    <>
         <Layout>
             <Row>
-                <Col md={24}><LoginIdentity teamName={teamName}></LoginIdentity><Header className="system__title" style={{backgroundColor: "transparent"}}>競賽匹配系統</Header></Col>
+                <Col offset={18}><div style={{position: "absolute"}}><AdminMenu registerClosed={registerClosed}></AdminMenu></div></Col>
+                <Col md={24}><LoginIdentity teamName={teamName}></LoginIdentity><Header className="system__title" style={{backgroundColor: "transparent"}}>管理隊伍</Header></Col>
             </Row>
             <br></br>
-            <Layout>
-                <Content className='system__calendar'>
-                    <Row>
-                        <Col md={6}>
-                            <CalendarModal></CalendarModal>
-                        </Col>
-                        <Col md={6} offset={12}>
-                            <Row><Space size={8} align='start'><Checkbox defaultChecked={registerClosed}></Checkbox><h5>關閉登記</h5></Space></Row>
-                        </Col>
-                    </Row>
-                    <CalendarBody teamName={teamName} preTime={[]}></CalendarBody>
-                </Content>
-            </Layout>
+            <Content className='system__app'>
+                <Table columns={columns} dataSource={data.teamName}></Table>
+            </Content>
             <Footer className='col-md-12 system__title'>
-                <NewTeamModal></NewTeamModal>  
                 <Button className="system__margins" onClick={() => {
                     setRegister(false);
                     }}>返回功能列表</Button>
-                <DeleteTeamModal></DeleteTeamModal>
             </Footer>
         </Layout>
     </>
-    
+    )
+} 
     
 export default AdminMainPage

@@ -6,6 +6,15 @@ import { gql } from "@apollo/client";
 // teamMatch(team: String!): Match!
 // allMatch: [Match!]
 
+export const ADMINDATA_QUERY = gql`
+    query AdminDataQuery {
+        adminData {
+            admin
+            isRegisterClosed
+        }
+    }
+`
+
 export const TEAMNAME_QUERY = gql`
     query TeamNameQuery {
         teamName {

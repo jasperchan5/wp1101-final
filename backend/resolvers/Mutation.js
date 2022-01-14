@@ -6,6 +6,26 @@
 import moment from "moment"
 
 const Mutation = {
+
+    async updateAdminData(parent, args, { db, pubsub }, info){
+        const admindata = await db.AdminDataModel.findOne({admin: "Admin"});
+        if(admindata) {
+            const existing = await db.AdminDataModel.findOneAndUpdate({admin: "Admin"}, {isRegisterClosed: !(admindata.isRegisterClosed)}, {new: true});
+
+            pubsub.publish('adminData', {
+                adminData: existing,
+            });
+            return existing;
+        }else if(!admindata) {
+            const newAdmindata = new db.AdminDataModel({admin: "Admin", isRegisterClosed: false});
+            newAdmindata.save();
+            pubsub.publish('adminData', {
+                adminData: newAdmindata,
+            });
+            return newAdmindata;
+        }
+    },
+
     async createTeam(parent, { name }, { db, pubsub }, info){
         if(!name) throw new Error("Missing team name in mutation createTeam");
         const existing = await db.TeamDataModel.findOne({team: name});

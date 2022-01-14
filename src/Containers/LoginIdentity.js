@@ -1,4 +1,4 @@
-import { Avatar, Card, Col, Row, Space, Tag } from "antd";
+import { Avatar, Card, Row, Tag } from "antd";
 import { CrownOutlined, UserOutlined } from '@ant-design/icons';
 
 export default ({teamName}) => {

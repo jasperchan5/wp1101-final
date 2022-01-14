@@ -5,3 +5,11 @@ export const TIME_SUBSCRIPTION = gql`
         time(team: $team)
     }
 `
+export const ADMINDATA_SUBSCRIPTION = gql`
+    subscription adminData {
+        adminData {
+            admin
+            isRegisterClosed
+        }
+    }
+`

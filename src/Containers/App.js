@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 import '../bootstrap.css';
 import Options from './PageOptions';
-import { Input, Layout, message, Tag, Card, Image, Space } from "antd";
+import { Input, Layout, message, Card } from "antd";
 import { LoginOutlined } from '@ant-design/icons';
 import { Header, Content, Footer } from 'antd/lib/layout/layout';
 import "antd/dist/antd.css";

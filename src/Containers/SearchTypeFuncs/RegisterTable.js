@@ -1,4 +1,4 @@
-import { Table, Tag, Space, message } from 'antd';
+import { Table, Tag, message } from 'antd';
 
 import { ALLTEAM_QUERY } from '../../graphql/queries';
 import { useQuery } from '@apollo/client';
