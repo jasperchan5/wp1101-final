@@ -54,8 +54,6 @@ export const TEAMMATCH_QUERY = gql`
     query TeamMatchQuery($team: String!) {
         teamMatch(team: $team) {
             matchName
-            team_1
-            team_2
             time
         }
     }

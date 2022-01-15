@@ -30,7 +30,7 @@ const Options = ({ setLogin, teamName }) => {
                     if(!subscriptionData) return prev;
                     const newTime = subscriptionData.data.time;
 
-                    console.log(prev);
+                    // console.log(prev);
 
                     return {
                         teamTime: {
@@ -51,7 +51,7 @@ const Options = ({ setLogin, teamName }) => {
                     if(!subscriptionData) return prev;
                     const newValue = subscriptionData.data.adminData.isRegisterClosed;
 
-                    console.log(prev);
+                    // console.log(prev);
 
                     return {
                         adminData: {

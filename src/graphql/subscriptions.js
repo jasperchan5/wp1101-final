@@ -64,3 +64,21 @@ export const ADMINDATA_SUBSCRIPTION = gql`
         }
     }
 `
+
+export const ALLMATCH_SUBSCRIPTION = gql`
+    subscription allMatch {
+        allMatch {
+            matchName
+            time
+        }
+    }
+`
+
+export const TEAMMATCH_SUBSCRIPTION = gql`
+    subscription teamMatch($team: String!) {
+        teamMatch(team: $team) {
+            matchName
+            time
+        }
+    }
+`

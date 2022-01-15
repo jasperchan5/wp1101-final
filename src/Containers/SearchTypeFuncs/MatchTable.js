@@ -1,8 +1,8 @@
 import { Table, Tag, message } from 'antd';
 
-import { ALLMATCH_QUERY, TEAMMATCH_QUERY } from '../../graphql/queries';
+import { ALLMATCH_QUERY, TEAMMATCH_QUERY, ALLMATCH_SUBSCRIPTION, TEAMMATCH_SUBSCRIPTION } from '../../graphql/index';
 import { useQuery } from '@apollo/client';
-import { useState } from 'react';
+import { useEffect } from 'react';
 
 export default ({teamName, onlySelf}) => {
     const { data: allMatchData, loading: allMatchLoading, subscribeToMore: allMatchSubscribeToMore } = useQuery(ALLMATCH_QUERY);
@@ -12,26 +12,44 @@ export default ({teamName, onlySelf}) => {
         team: teamName,
       }
     });
+    // console.log(teamMatchData);
+    useEffect(() => {
+      try {
+        allMatchSubscribeToMore({
+              document: ALLMATCH_SUBSCRIPTION,
+              updateQuery: (prev, { subscriptionData }) => {
+                  if(!subscriptionData) return prev;
+                  const newAllMatch = subscriptionData.data.allMatch;
+  
+                  // console.log(prev);
+  
+                  return {
+                    allMatch: [...prev.allMatch, newAllMatch]
+                  }
+              }
+          })
+      } catch (e) {}
+    }, [allMatchSubscribeToMore]);
 
-    // useEffect(() => {
-    //   try {
-    //     subscribeToMore({
-    //           document: CREATETEAMNAME_SUBSCRIPTION,
-    //           updateQuery: (prev, { subscriptionData }) => {
-    //               if(!subscriptionData) return prev;
-    //               const newTeam = subscriptionData.data.createTeam;
-  
-    //               console.log(prev);
-  
-    //               return {
-    //                   teamName: [...prev.teamName, newTeam]
-    //               }
-    //           }
-    //       })
-    //   } catch (e) {}
-    // }, [subscribeToMore]);
+    useEffect(() => {
+      try {
+        teamMatchSubscribeToMore({
+              document: TEAMMATCH_SUBSCRIPTION,
+              variables: { team: teamName },
+              updateQuery: (prev, { subscriptionData }) => {
+                  if(!subscriptionData) return prev;
+                  const newTeamMatch = subscriptionData.data.teamMatch;
 
-  
+                  console.log(prev);
+
+                  return {
+                    teamMatch: [...prev.teamMatch, newTeamMatch],
+                  }
+              }
+          })
+      } catch (e) {}
+    }, [teamMatchSubscribeToMore])
+
     const columns = [
         {
           title: '對戰組合',
@@ -51,7 +69,7 @@ export default ({teamName, onlySelf}) => {
 
       return(
           <Table columns={columns}
-          dataSource={onlySelf?teamMatchData.teamMatch:allMatchData.allMatch}
+          dataSource={onlySelf ? teamMatchData.teamMatch : allMatchData.allMatch}
           pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['1', '2', '5']}}></Table>
       )
 }
