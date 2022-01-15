@@ -17,7 +17,10 @@ type Mutation {
 }
 
 type Subscription {
+  createTeam: Team!
+  deleteTeam: Team!
   time(team: String!): [String!]
+  allTeamTime: Team!
   adminData: AdminData!
 }
 

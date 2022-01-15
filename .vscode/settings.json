@@ -3,12 +3,6 @@
         "xstring": "cpp",
         "initializer_list": "cpp",
         "xutility": "cpp",
-        "iostream": "cpp",
-        "ios": "cpp",
-        "xiosbase": "cpp",
-        "vector": "cpp",
-        "ostream": "cpp",
-        "utility": "cpp"
-    },
-    "C_Cpp.errorSquiggles": "Disabled"
+        "iostream": "cpp"
+    }
 }

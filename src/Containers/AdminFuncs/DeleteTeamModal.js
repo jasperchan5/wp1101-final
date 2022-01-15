@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, Input, message } from 'antd';
-import { DELETE_TEAM_MUTATION } from '../../graphql/mutation';
+import { DELETE_TEAM_MUTATION } from '../../graphql/index';
 import { useMutation } from '@apollo/client';
 
 const DeleteTeamModal = () => {

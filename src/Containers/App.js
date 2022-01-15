@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import '../App.css';
 import '../bootstrap.css';
 import Options from './PageOptions';
@@ -9,12 +9,52 @@ import "antd/dist/antd.css";
 
 
 import { useQuery } from '@apollo/client';
-import { TEAMNAME_QUERY } from '../graphql/index';
+import { TEAMNAME_QUERY, CREATETEAMNAME_SUBSCRIPTION, DELETETEAMNAME_SUBSCRIPTION } from '../graphql/index';
+
 
 function App() {
   const [login, setLogin] = useState(false);
   const [teamName, setTeamName] = useState('');
-  const { data, loading } = useQuery(TEAMNAME_QUERY);
+  const { data, loading, subscribeToMore } = useQuery(TEAMNAME_QUERY);
+
+  useEffect(() => {
+    try {
+      subscribeToMore({
+            document: CREATETEAMNAME_SUBSCRIPTION,
+            updateQuery: (prev, { subscriptionData }) => {
+                if(!subscriptionData) return prev;
+                const newTeam = subscriptionData.data.createTeam;
+
+                console.log(prev);
+
+                return {
+                    teamName: [...prev.teamName, newTeam]
+                }
+            }
+        })
+    } catch (e) {}
+  }, [subscribeToMore]);
+
+  useEffect(() => {
+    try {
+      subscribeToMore({
+            document: DELETETEAMNAME_SUBSCRIPTION,
+            updateQuery: (prev, { subscriptionData }) => {
+                if(!subscriptionData) return prev;
+                const toDelete = subscriptionData.data.deleteTeam;
+
+                console.log(prev);
+
+                const indexDel = prev.teamName.findIndex(o => o.team === toDelete.team);
+                console.log(indexDel);
+
+                return {
+                    teamName: [...prev.teamName.slice(0, indexDel), ...prev.teamName.slice(indexDel + 1)]
+                }
+            }
+        })
+    } catch (e) {}
+  }, [subscribeToMore]);
 
   const LoginPage = <>
     <Layout>

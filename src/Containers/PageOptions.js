@@ -34,6 +34,7 @@ const Options = ({ setLogin, teamName }) => {
 
                     return {
                         teamTime: {
+                            team: prev.teamTime.team,
                             time: newTime,
                         },
                     }
@@ -54,6 +55,7 @@ const Options = ({ setLogin, teamName }) => {
 
                     return {
                         adminData: {
+                            admin: prev.adminData.admin,
                             isRegisterClosed: newValue,
                         },
                     }

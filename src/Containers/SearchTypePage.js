@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 //import Calendar from './Calendar/Calendar.js';
-import { Button, Card, Col, Layout, Row} from "antd"
+import { Button, Card, Col, Layout, Row, Checkbox, Space} from "antd"
 import { LogoutOutlined, SearchOutlined } from '@ant-design/icons';
 import "antd/dist/antd.css";
 import { Header,Content,Footer } from 'antd/lib/layout/layout';
@@ -9,10 +9,15 @@ import RegisterTable from './SearchTypeFuncs/RegisterTable';
 import LoginIdentity from './LoginIdentity';
 
 const SearchType = ({setSearch, teamName}) => {
-     //查詢登記(searchALL:登記紀錄)
+    //查詢登記(searchALL:登記紀錄)
     const [searchAll, setsearchAll] = useState(false)
     //查詢匹配(searchSuccess:成功匹配)
     const [searchSuccess, setsearchSuccess] = useState(false)
+    //選擇僅顯示己方隊伍的比賽
+    const [onlySelf, setOnlySelf] = useState(false);
+    const handleCheckboxChange = () => {
+        setOnlySelf(!onlySelf);
+    }
 
     //查詢選項頁面
     const SearchTypePage = <>
@@ -72,8 +77,12 @@ const SearchType = ({setSearch, teamName}) => {
             <Col md={24}><LoginIdentity teamName={teamName}></LoginIdentity><Header className="system__title" style={{backgroundColor: "transparent"}}>已匹配結果</Header></Col>
         </Row>
         <Layout className='system__table'>
-            <Content><MatchTable teamName={teamName}></MatchTable></Content>
+            <Content><MatchTable teamName={teamName} onlySelf={onlySelf}></MatchTable></Content>
         </Layout>
+        <Space align="center" size={8}>
+            <Checkbox defaultChecked={onlySelf} onChange={() => handleCheckboxChange()}>
+            </Checkbox><h5>僅顯示己方隊伍對戰組合</h5>
+        </Space>
         <Footer className="system__app">
         <Button className="system__margins" onClick={() => {
                 setsearchSuccess(false);
