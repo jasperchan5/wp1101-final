@@ -28,27 +28,22 @@ export default ({teamName, onlySelf}) => {
                   }
               }
           })
-      } catch (e) {}
-    }, [allMatchSubscribeToMore]);
-
-    useEffect(() => {
-      try {
         teamMatchSubscribeToMore({
-              document: TEAMMATCH_SUBSCRIPTION,
-              variables: { team: teamName },
-              updateQuery: (prev, { subscriptionData }) => {
-                  if(!subscriptionData) return prev;
-                  const newTeamMatch = subscriptionData.data.teamMatch;
+          document: TEAMMATCH_SUBSCRIPTION,
+          variables: { team: teamName },
+          updateQuery: (prev, { subscriptionData }) => {
+              if(!subscriptionData) return prev;
+              const newTeamMatch = subscriptionData.data.teamMatch;
 
-                  console.log(prev);
+              // console.log(prev);
 
-                  return {
-                    teamMatch: [...prev.teamMatch, newTeamMatch],
-                  }
+              return {
+                teamMatch: [...prev.teamMatch, newTeamMatch],
               }
-          })
+          }
+        })
       } catch (e) {}
-    }, [teamMatchSubscribeToMore])
+    }, [allMatchSubscribeToMore,teamMatchSubscribeToMore]);
 
     const columns = [
         {

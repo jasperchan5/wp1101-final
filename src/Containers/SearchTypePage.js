@@ -78,17 +78,17 @@ const SearchType = ({setSearch, teamName}) => {
             <Col md={24}><LoginIdentity teamName={teamName}></LoginIdentity><Header className="system__title" style={{backgroundColor: "transparent", fontWeight: "bold"}}>已匹配結果</Header></Col>
         </Row>
         <Layout className='system__table'>
-            <Content><MatchTable teamName={teamName} onlySelf={onlySelf}></MatchTable></Content>
+            <Content>
+                <MatchTable teamName={teamName} onlySelf={onlySelf}></MatchTable>
+            </Content>
         </Layout>
-
-        <Col offset={10} md={12}>
-            <Space align="center" size={6}>
-                <Checkbox defaultChecked={onlySelf} onChange={() => handleCheckboxChange()}>
-                </Checkbox><h7 style={{textAlign: "center"}}>僅顯示己方隊伍對戰組合</h7>
-            </Space>
-
-        </Col>
         <Footer className="system__app">
+            <Row align='center'>
+                <Space size={6}> 
+                    <Checkbox defaultChecked={onlySelf} onChange={() => handleCheckboxChange()}>
+                    </Checkbox><h6>僅顯示己方隊伍對戰組合</h6>
+                </Space>
+            </Row>
             <Button className="system__margins" onClick={() => {
                     setsearchSuccess(false);
                     }}>返回查詢選項</Button>

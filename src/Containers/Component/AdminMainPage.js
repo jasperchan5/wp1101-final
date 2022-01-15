@@ -14,7 +14,7 @@ const AdminMainPage = ({setRegister, teamName, registerClosed}) => {
     if(loading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
 
     const columns = [{
-        title: <div backgroundColor="linear-gradient(90deg, #d48806 0%, #ffe58f 50%, #d48806 100%)">隊伍列表</div>,
+        title: '隊伍列表',
         dataIndex: 'team',
         key: 'team',
         align: 'center',
@@ -30,7 +30,7 @@ const AdminMainPage = ({setRegister, teamName, registerClosed}) => {
             </Row>
             <br></br>
             <Content className='system__app'>
-                <Table columns={columns} dataSource={data.teamName} className="admin_table_header"></Table>
+                <Table columns={columns} dataSource={data.teamName} pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['1', '2', '5']}}></Table>
             </Content>
             <Footer className='col-md-12 system__title'>
                 <Button className="system__margins" onClick={() => {
