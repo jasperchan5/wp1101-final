@@ -58,7 +58,7 @@ function App() {
 
   const LoginPage = <>
     <Layout>
-      <Header className="system__title" style={{backgroundColor: "transparent"}}>歡迎使用球隊比賽匹配系統</Header>
+      <Header className="system__title" style={{backgroundColor: "transparent", fontWeight: "bold"}}>歡迎使用球隊比賽匹配系統</Header>
       <Layout>
         <Content className="system__app">
           <Card title={<h3 style={{textAlign: "center", fontWeight: "bold"}}>登入</h3>}>
