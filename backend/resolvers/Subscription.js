@@ -1,11 +1,34 @@
-// time(team: String!): TimeSubscriptionPayload!
+// createTeam: Team!
+// deleteTeam: Team!
+// time(team: String!): [String!]
+// allTeamTime: Team!
+// adminData: AdminData!
 
 const Subscription = {
-    time: {
-        subscribe: (parent, { team }, { pubsub }) => {
-                return pubsub.asyncIterator(`team ${team}`);
+    createTeam: {
+        subscribe: (parent, args, { pubsub }) => {
+            return pubsub.asyncIterator('createTeam');
         },
     },
+
+    deleteTeam: {
+        subscribe: (parent, args, { pubsub }) => {
+            return pubsub.asyncIterator(`deleteTeam`);
+        },
+    },
+
+    time: {
+        subscribe: (parent, { team }, { pubsub }) => {
+            return pubsub.asyncIterator(`team ${team}`);
+        },
+    },
+
+    allTeamTime: {
+        subscribe: (parent, args, { pubsub }) => {
+            return pubsub.asyncIterator(`allTeamTime`);
+        },
+    },
+
     adminData: {
         subscribe: (parent, args, { pubsub }) => {
             return pubsub.asyncIterator('adminData');

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, Input } from 'antd';
-import { CREATE_TEAM_MUTATION } from '../../graphql/mutation';
+import { CREATE_TEAM_MUTATION } from '../../graphql/index';
 import { useMutation } from '@apollo/client';
 
 const NewTeamModal = () => {

@@ -1,13 +1,37 @@
 import { Table, Tag, message } from 'antd';
 
-import { ALLMATCH_QUERY } from '../../graphql/queries';
+import { ALLMATCH_QUERY, TEAMMATCH_QUERY } from '../../graphql/queries';
 import { useQuery } from '@apollo/client';
 import { useState } from 'react';
 
-export default ({teamName}) => {
-    const { data, loading } = useQuery(ALLMATCH_QUERY);
-    const [nowPercent, setNowPercent] = useState(0)
-    console.log(data);
+export default ({teamName, onlySelf}) => {
+    const { data: allMatchData, loading: allMatchLoading, subscribeToMore: allMatchSubscribeToMore } = useQuery(ALLMATCH_QUERY);
+
+    const { data: teamMatchData, loading: teamMatchLoading, subscribeToMore: teamMatchSubscribeToMore } = useQuery(TEAMMATCH_QUERY,{
+      variables: {
+        team: teamName,
+      }
+    });
+
+    // useEffect(() => {
+    //   try {
+    //     subscribeToMore({
+    //           document: CREATETEAMNAME_SUBSCRIPTION,
+    //           updateQuery: (prev, { subscriptionData }) => {
+    //               if(!subscriptionData) return prev;
+    //               const newTeam = subscriptionData.data.createTeam;
+  
+    //               console.log(prev);
+  
+    //               return {
+    //                   teamName: [...prev.teamName, newTeam]
+    //               }
+    //           }
+    //       })
+    //   } catch (e) {}
+    // }, [subscribeToMore]);
+
+  
     const columns = [
         {
           title: '對戰組合',
@@ -23,9 +47,11 @@ export default ({teamName}) => {
         }
       ]
 
-      if(loading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
+      if(teamMatchLoading || allMatchLoading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
 
       return(
-          <Table columns={columns} dataSource={data.allMatch} pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['1', '2', '5']}}></Table>
+          <Table columns={columns}
+          dataSource={onlySelf?teamMatchData.teamMatch:allMatchData.allMatch}
+          pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['1', '2', '5']}}></Table>
       )
 }
