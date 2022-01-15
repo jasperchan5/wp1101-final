@@ -47,7 +47,7 @@ export default ({teamName, onlySelf}) => {
         }
       ]
 
-      if(teamMatchLoading || allMatchLoading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
+      if(teamMatchLoading || allMatchLoading) return message.loading("Loading...", 1)
 
       return(
           <Table columns={columns}

@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/client';
 export default ({currentDate}) => {
     const { data, loading } = useQuery(TIMEMATCH_QUERY, {variables:{time: currentDate}});
     
-    if(loading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
+    if(loading) return message.loading("Loading...", 1)
 
     const columns = [
         {

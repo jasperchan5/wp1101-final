@@ -86,7 +86,7 @@ export default ({teamName}) => {
         }
       ];
       
-      if(loading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
+      if(loading) return message.loading("Loading...", 1)
 
       return(
           <Table columns={columns} dataSource={data.allTeam} pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['1', '2', '5']}}></Table>

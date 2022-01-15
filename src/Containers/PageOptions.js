@@ -107,7 +107,7 @@ const Options = ({ setLogin, teamName }) => {
         </Layout>
     </>
 
-    if(teamTimeLoading || adminDataLoading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
+    if(teamTimeLoading || adminDataLoading) return message.loading("Loading...", 1)
 
     return (<>
         {register?(teamName === "Admin"?<AdminMainPage setRegister={setRegister} teamName={teamName} registerClosed={adminData.adminData.isRegisterClosed}/>:<MainPage setRegister={setRegister} teamName={teamName} data={teamTimeData} registerClosed={adminData.adminData.isRegisterClosed}/>):(search?<SearchType setSearch={setSearch} teamName={teamName}/>:OptionPage)}
