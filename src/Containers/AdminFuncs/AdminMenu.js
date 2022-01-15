@@ -1,4 +1,4 @@
-import { Menu, Divider, Checkbox, Space, Button, Row } from "antd"
+import { Menu, Divider, Checkbox, Space, Button, Row} from "antd"
 import NewTeamModal from './NewTeamModal'
 import DeleteTeamModal from './DeleteTeamModal';
 import StartMatchModal from './StartMatchModal';

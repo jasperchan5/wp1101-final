@@ -6,13 +6,12 @@ import AdminMenu from '../AdminFuncs/AdminMenu';
 
 import { TEAMNAME_QUERY } from '../../graphql';
 import { useQuery } from '@apollo/client'
-
 import "./AdminMainPage.css"
 
 
 const AdminMainPage = ({setRegister, teamName, registerClosed}) => {
     const { data, loading } = useQuery(TEAMNAME_QUERY);
-    if(loading) return message.loading("Loading...", 1)
+    if(loading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
 
     const columns = [{
         title: <div backgroundColor="linear-gradient(90deg, #d48806 0%, #ffe58f 50%, #d48806 100%)">隊伍列表</div>,

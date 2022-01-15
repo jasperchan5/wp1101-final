@@ -30,7 +30,7 @@ const Options = ({ setLogin, teamName }) => {
                     if(!subscriptionData) return prev;
                     const newTime = subscriptionData.data.time;
 
-                    console.log(prev);
+                    // console.log(prev);
 
                     return {
                         teamTime: {
@@ -51,7 +51,7 @@ const Options = ({ setLogin, teamName }) => {
                     if(!subscriptionData) return prev;
                     const newValue = subscriptionData.data.adminData.isRegisterClosed;
 
-                    console.log(prev);
+                    // console.log(prev);
 
                     return {
                         adminData: {
@@ -107,7 +107,7 @@ const Options = ({ setLogin, teamName }) => {
         </Layout>
     </>
 
-    if(teamTimeLoading || adminDataLoading) return message.loading("Loading...", 1)
+    if(teamTimeLoading || adminDataLoading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
 
     return (<>
         {register?(teamName === "Admin"?<AdminMainPage setRegister={setRegister} teamName={teamName} registerClosed={adminData.adminData.isRegisterClosed}/>:<MainPage setRegister={setRegister} teamName={teamName} data={teamTimeData} registerClosed={adminData.adminData.isRegisterClosed}/>):(search?<SearchType setSearch={setSearch} teamName={teamName}/>:OptionPage)}

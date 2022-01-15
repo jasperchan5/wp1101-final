@@ -90,7 +90,13 @@ const Mutation = {
                 //t1拿出來的是字串,切割字串
                 // console.log(t1);
                 let t1Str = "" 
-                t1.split("/").map((e, index) => {if(index === 1 && e.length < 2){t1Str += '0'} t1Str += e})
+                t1.split("/").map((e, index) => {
+                    if(index === 1 && e.length < 2){
+                        t1Str += '0'
+                    }else if(index === 2 && e.length < 2){
+                        t1Str += '0'
+                    }t1Str += e
+                })
                 let t1Num = parseInt(t1Str)
                 // console.log(t1Str);
                 // console.log(t1Num);
@@ -103,16 +109,11 @@ const Mutation = {
                             //if db 沒有 "a_b"match
                             if(!matchFound && !matchedNameList.some((e) => e === matchNameNow)){
                                 teamData2.time.forEach(async(t2) => {
-                                    //字元切割
-                                    // let t2Str = "" 
-                                    // t2.split("/").map((e, index) => {if(index === 1 && e.length < 2){t2Str += '0'} t2Str += e})
-                                    // let t2Num = parseInt(t2Str)
-                                    // console.log(t2Str);
-                                    // if(t1Num === t2Num){
                                     if(t1 === t2){
                                         //console.log(t1Num,t2Num);
                                         const timeFound = await db.MatchModel.findOne({time: t1});
-                                        if(!timeFound && !matchedTime.some((e) => e === t1)){
+                                        const matchFound = await db.MatchModel.findOne({matchName: matchNameNow});
+                                        if(!timeFound && !matchedTime.some((e) => e === t1) && !matchFound && !matchedNameList.some((e) => e === matchNameNow)){
                                             console.log(`Save match ${matchNameNow}, date:${t1} to db`);
                                             //存入"a_b"match(t1,t2)
                                             const matchdata = new db.MatchModel({
@@ -125,6 +126,12 @@ const Mutation = {
                                             matchdata.save();
                                             pubsub.publish('allMatch', {
                                                 allMatch: matchdata,
+                                            });
+                                            pubsub.publish(`team ${teamData.team} match`, {
+                                                teamMatch: matchdata,
+                                            });
+                                            pubsub.publish(`team ${teamData2.team} match`, {
+                                                teamMatch: matchdata,
                                             });
                                             matchedTime.push(t1);
                                             matchedNameList.push(matchNameNow);
@@ -140,18 +147,6 @@ const Mutation = {
                 }
             })
         });
-            //for registered date in user time: teamA.time
-                
-            
-                //check the date is not in matchedTime and the date is later than the date(continue)
-
-            //for other user:teamB
-
-                //if teamA.time == teamB.time
-
-                    //db操作
-                    //if db doesn't have teamA-teamB match 存入 
-            //
         return allMatchList;
     },
 }

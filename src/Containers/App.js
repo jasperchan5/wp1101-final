@@ -94,7 +94,7 @@ function App() {
       <Footer></Footer>
     </Layout>
   </>
-  if(loading) return message.loading("Loading...", 1)
+  if(loading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
 
   // console.log(data);
 

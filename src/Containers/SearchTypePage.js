@@ -16,6 +16,7 @@ const SearchType = ({setSearch, teamName}) => {
     //選擇僅顯示己方隊伍的比賽
     const [onlySelf, setOnlySelf] = useState(false);
     const handleCheckboxChange = () => {
+        // console.log(!onlySelf);
         setOnlySelf(!onlySelf);
     }
 
@@ -79,10 +80,14 @@ const SearchType = ({setSearch, teamName}) => {
         <Layout className='system__table'>
             <Content><MatchTable teamName={teamName} onlySelf={onlySelf}></MatchTable></Content>
         </Layout>
-        <Space align="center" size={8}>
-            <Checkbox defaultChecked={onlySelf} onChange={() => handleCheckboxChange()}>
-            </Checkbox><h5>僅顯示己方隊伍對戰組合</h5>
-        </Space>
+
+        <Col offset={10} md={12}>
+            <Space align="center" size={6}>
+                <Checkbox defaultChecked={onlySelf} onChange={() => handleCheckboxChange()}>
+                </Checkbox><h7 style={{textAlign: "center"}}>僅顯示己方隊伍對戰組合</h7>
+            </Space>
+
+        </Col>
         <Footer className="system__app">
             <Button className="system__margins" onClick={() => {
                     setsearchSuccess(false);

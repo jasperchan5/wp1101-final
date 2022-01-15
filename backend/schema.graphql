@@ -3,7 +3,7 @@ type Query {
   allTeam: [Team!]
   teamTime(team: String!): Team!
   timeMatch(time: String!): [Team!]
-  teamMatch(team: String!): Match!
+  teamMatch(team: String!): [Match!]
   allMatch: [Match!]
   adminData: AdminData!
 }
@@ -12,7 +12,7 @@ type Mutation {
   createTeam(name: String!): Team!
   deleteTeam(name: String!): Boolean!
   updateTime(name: String!, time: [String!]!): Team!
-  createMatch: Match!
+  createMatch: [Match!]
   updateAdminData: AdminData!
 }
 
@@ -22,6 +22,8 @@ type Subscription {
   time(team: String!): [String!]
   allTeamTime: Team!
   adminData: AdminData!
+  allMatch: Match!
+  teamMatch(team: String!): Match!
 }
 
 type AdminData {
