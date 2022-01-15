@@ -24,7 +24,7 @@ const SearchType = ({setSearch, teamName}) => {
     const SearchTypePage = <>
         <Layout>
             <Row>
-                <Col md={24}><LoginIdentity teamName={teamName}></LoginIdentity><Header className="system__title" style={{backgroundColor: "transparent"}}>查詢選項</Header></Col>
+                <Col md={24}><LoginIdentity teamName={teamName}></LoginIdentity><Header className="system__title" style={{backgroundColor: "transparent", fontWeight: "bold"}}>查詢選項</Header></Col>
             </Row>
             <Layout>
                 <Content className="system__app">
@@ -60,7 +60,7 @@ const SearchType = ({setSearch, teamName}) => {
     const RegisterRecordPage = <>
     <Layout>
         <Row>
-            <Col md={24}><LoginIdentity teamName={teamName}></LoginIdentity><Header className="system__title" style={{backgroundColor: "transparent"}}>登記執行紀錄</Header></Col>
+            <Col md={24}><LoginIdentity teamName={teamName}></LoginIdentity><Header className="system__title" style={{backgroundColor: "transparent", fontWeight: "bold"}}>登記執行紀錄</Header></Col>
         </Row>
         <Layout className='system__table'>
             <Content><RegisterTable teamName={teamName}></RegisterTable></Content>
@@ -75,7 +75,7 @@ const SearchType = ({setSearch, teamName}) => {
     const MatchResult = <>
     <Layout>
         <Row>
-            <Col md={24}><LoginIdentity teamName={teamName}></LoginIdentity><Header className="system__title" style={{backgroundColor: "transparent"}}>已匹配結果</Header></Col>
+            <Col md={24}><LoginIdentity teamName={teamName}></LoginIdentity><Header className="system__title" style={{backgroundColor: "transparent", fontWeight: "bold"}}>已匹配結果</Header></Col>
         </Row>
         <Layout className='system__table'>
             <Content><MatchTable teamName={teamName} onlySelf={onlySelf}></MatchTable></Content>
@@ -89,9 +89,9 @@ const SearchType = ({setSearch, teamName}) => {
 
         </Col>
         <Footer className="system__app">
-        <Button className="system__margins" onClick={() => {
-                setsearchSuccess(false);
-                }}>返回查詢選項</Button>
+            <Button className="system__margins" onClick={() => {
+                    setsearchSuccess(false);
+                    }}>返回查詢選項</Button>
         </Footer>
     </Layout>
     </>

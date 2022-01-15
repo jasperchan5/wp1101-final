@@ -1,0 +1,14 @@
+.admin_table_header {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.85);
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    list-style: none;
+    font-feature-settings: 'tnum';
+    position: relative;
+    font-size: 14px;
+    background: linear-gradient(90deg, #d48806 0%, #ffe58f 50%, #d48806 100%);
+    border-radius: 2px;
+  }

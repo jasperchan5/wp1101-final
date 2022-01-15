@@ -72,7 +72,7 @@ const Options = ({ setLogin, teamName }) => {
     const OptionPage = <>
         <Layout>
             <Row>
-                <Col md={24}><LoginIdentity teamName={teamName}></LoginIdentity><Header className="system__title" style={{backgroundColor: "transparent"}}>功能列表</Header></Col>
+                <Col md={24}><LoginIdentity teamName={teamName}></LoginIdentity><Header className="system__title" style={{backgroundColor: "transparent", fontWeight: "bold"}}>功能列表</Header></Col>
             </Row>
             <Layout> 
                 <Content className="system__app">

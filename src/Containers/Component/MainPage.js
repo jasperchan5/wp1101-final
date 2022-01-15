@@ -8,7 +8,7 @@ import LoginIdentity from '../LoginIdentity';
 const MainPage = ({setRegister, teamName, data, registerClosed}) => <>
     <Layout>
         <Row>
-            <Col md={24}><LoginIdentity teamName={teamName}></LoginIdentity><Header className="system__title" style={{backgroundColor: "transparent"}}>競賽匹配系統</Header></Col>
+            <Col md={24}><LoginIdentity teamName={teamName}></LoginIdentity><Header className="system__title" style={{backgroundColor: "transparent", fontWeight: "bold"}}>競賽匹配系統</Header></Col>
         </Row>
         <br></br>
         <Layout>
