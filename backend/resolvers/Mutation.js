@@ -56,7 +56,19 @@ const Mutation = {
                 await db.MatchModel.deleteOne(matchToDelete);
                 pubsub.publish('allMatch', {
                     allMatch: {
-                        mutation: "CREATED",
+                        mutation: "DELETED",
+                        match: matchToDelete,
+                    },
+                });
+                pubsub.publish(`team ${matchToDelete.team_1} match`, {
+                    teamMatch: {
+                        mutation: "DELETED",
+                        match: matchToDelete,
+                    },
+                });
+                pubsub.publish(`team ${matchToDelete.team_2} match`, {
+                    teamMatch: {
+                        mutation: "DELETED",
                         match: matchToDelete,
                     },
                 });
@@ -80,7 +92,7 @@ const Mutation = {
                 team: name,
                 time: time,
             }
-        });   
+        });
         return existing;
     },
 
@@ -149,10 +161,16 @@ const Mutation = {
                                                 },
                                             });
                                             pubsub.publish(`team ${teamData.team} match`, {
-                                                teamMatch: matchdata,
+                                                teamMatch: {
+                                                    mutation: "CREATED",
+                                                    match: matchdata,
+                                                },
                                             });
                                             pubsub.publish(`team ${teamData2.team} match`, {
-                                                teamMatch: matchdata,
+                                                teamMatch: {
+                                                    mutation: "CREATED",
+                                                    match: matchdata,
+                                                },
                                             });
                                             matchedTime.push(t1);
                                             matchedNameList.push(matchNameNow);

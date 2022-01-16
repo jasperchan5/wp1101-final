@@ -20,7 +20,8 @@ export default ({teamName, onlySelf}) => {
     // console.log(teamMatchData);
 
     useEffect(() => {
-      try {
+        // console.log("useEffect1");
+        try {
         allMatchSubscribeToMore({
           document: ALLMATCH_SUBSCRIPTION,
           updateQuery: (prev, { subscriptionData }) => {
@@ -30,17 +31,17 @@ export default ({teamName, onlySelf}) => {
             if(mutationType === "CREATED") {
               const newAllMatch = subscriptionData.data.allMatch.match;
 
-              console.log('newMatch', newAllMatch);
+              // console.log('newMatch', newAllMatch);
 
               return {
                 allMatch: [...prev.allMatch, newAllMatch]
               }
             }else if(mutationType === "DELETED") {
               const toDelete = subscriptionData.data.allMatch.match;
-              console.log('toDelete:',toDelete);
+              // console.log('toDelete:',toDelete);
 
               const indexDel = prev.allMatch.findIndex(o => o.matchName === toDelete.matchName);
-              console.log('toDelete index:', indexDel);
+              // console.log('toDelete index:', indexDel);
 
               return {
                 allMatch: [...prev.allMatch.slice(0, indexDel), ...prev.allMatch.slice(indexDel + 1)]
@@ -53,36 +54,38 @@ export default ({teamName, onlySelf}) => {
     }, [allMatchSubscribeToMore]);
 
     useEffect(() => {
-      try {
-        // allMatchSubscribeToMore({
-        //   document: ALLMATCH_SUBSCRIPTION,
-        //   updateQuery: (prev, { subscriptionData }) => {
-        //     if(!subscriptionData) return prev;
-        //     const newAllMatch = subscriptionData.data.allMatch;
-
-        //     console.log('newMatch', prev);
-
-        //     return {
-        //       allMatch: [...prev.allMatch, newAllMatch]
-        //     }
-        //   }
-        // })
+        // console.log("useEffect2");
+        try {
         teamMatchSubscribeToMore({
           document: TEAMMATCH_SUBSCRIPTION,
           variables: { team: teamName },
           updateQuery: (prev, { subscriptionData }) => {
             if(!subscriptionData) return prev;
-            const newTeamMatch = subscriptionData.data.teamMatch;
 
-            // console.log(prev);
+            const mutationType = subscriptionData.data.teamMatch.mutation;
+            if(mutationType === "CREATED") {
+              const newTeamMatch = subscriptionData.data.teamMatch.match;
 
-            return {
-              teamMatch: [...prev.teamMatch, newTeamMatch],
+              // console.log('newMatch', newTeamMatch);
+
+              return {
+                teamMatch: [...prev.teamMatch, newTeamMatch]
+              }
+            }else if(mutationType === "DELETED") {
+              const toDelete = subscriptionData.data.teamMatch.match;
+              // console.log('toDelete:',toDelete);
+
+              const indexDel = prev.teamMatch.findIndex(o => o.matchName === toDelete.matchName);
+              // console.log('toDelete index:', indexDel);
+
+              return {
+                teamMatch: [...prev.teamMatch.slice(0, indexDel), ...prev.teamMatch.slice(indexDel + 1)]
+              }
             }
           }
         })
       } catch (e) {}
-    }, [/*allMatchSubscribeToMore, */teamMatchSubscribeToMore]);
+    }, [teamMatchSubscribeToMore]);
 
     const columns = [
       {

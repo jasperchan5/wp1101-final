@@ -22,8 +22,8 @@ type Subscription {
   time(team: String!): [String!]
   allTeamTime: Team!
   adminData: AdminData!
-  allMatch: allMatchSubscriptionPayload!
-  teamMatch(team: String!): Match!
+  allMatch: MatchSubscriptionPayload!
+  teamMatch(team: String!): MatchSubscriptionPayload!
 }
 
 type AdminData {
@@ -51,7 +51,7 @@ enum MutationType {
   DELETED
 }
 
-type allMatchSubscriptionPayload {
+type MatchSubscriptionPayload {
   mutation: MutationType!
   match: Match!
 }
