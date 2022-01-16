@@ -14,7 +14,7 @@ export default ({teamName}) => {
                   if(!subscriptionData) return prev;
                   const updatedTeam = subscriptionData.data.allTeamTime;
   
-                  console.log(prev);
+                  // console.log(prev);
                   const index = prev.allTeam.findIndex(o => o.team === updatedTeam.team);
   
                   return {
@@ -33,7 +33,7 @@ export default ({teamName}) => {
                     if(!subscriptionData) return prev;
                     const newTeam = subscriptionData.data.createTeam;
     
-                    console.log(prev);
+                    // console.log(prev);
     
                     return {
                         allTeam: [...prev.allTeam, newTeam]
@@ -51,7 +51,7 @@ export default ({teamName}) => {
                   if(!subscriptionData) return prev;
                   const toDelete = subscriptionData.data.deleteTeam;
   
-                  console.log(prev);
+                  // console.log(prev);
   
                   const indexDel = prev.allTeam.findIndex(o => o.team === toDelete.team);
                   // console.log(indexDel);
@@ -86,7 +86,7 @@ export default ({teamName}) => {
         }
       ];
       
-      if(loading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
+      if(loading) return message.loading("Loading...", 1.5)
 
       return(
           <Table columns={columns} dataSource={data.allTeam} pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['1', '2', '5']}}></Table>

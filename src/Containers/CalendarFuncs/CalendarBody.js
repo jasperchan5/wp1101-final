@@ -7,13 +7,14 @@ import { useMutation } from "@apollo/client";
 
 export default ({teamName, preTime, registerClosed}) => {
     const [selectedDays, setSelectedDays] = useState([])
-    const [selectedDaysInDateForm, setSelectedDaysInDateForm] = useState(preTime)
+    const [prevMonth, setPrevMonth] = useState(moment().month());
+    const [prevYear, setPrevYear] = useState(moment().year());
 
     const [updateTime] = useMutation(UPDATE_TIME_MUTATION)
     useEffect(() => {
-        if(selectedDaysInDateForm.length !== 0){
+        if(preTime.length !== 0){
             let curr = []
-            selectedDaysInDateForm.forEach((k) => {
+            preTime.forEach((k) => {
                 let splitedK = k.split("/");
                 curr.push([parseInt(splitedK[0]),parseInt(splitedK[1])-1,parseInt(splitedK[2])])
             })
@@ -73,30 +74,37 @@ export default ({teamName, preTime, registerClosed}) => {
     return(
     <>
         <Calendar 
-            fullscreen={false} 
+            fullscreen={false}
             onSelect={(e)=>{
+                if(e.month() !== prevMonth || e.year() !== prevYear){
+                    setPrevMonth(e.month());
+                    setPrevYear(e.year());
+                    return;
+                }
+
                 let curr = [e.year(),e.month(),e.date()];
 
-                let currDate = `${curr[0]}/${curr[1]+1}/${curr[2]}`;
-                console.log(currDate);
+                // let currDate = `${curr[0]}/${curr[1]+1}/${curr[2]}`; console.log(currDate);
+
+                // console.log(selectedDays);
                 
                 let found = false, index = -1;
                 for(let i=0;i<selectedDays.length;i++){
                     if(selectedDays[i][0] === curr[0] && selectedDays[i][1] === curr[1] && selectedDays[i][2] === curr[2]){
                         found = true;
                         index = i;
+                        break;
                     }
                 }
                 if(found){
                     setSelectedDays([...selectedDays.slice(0,index), ...selectedDays.slice(index+1)])
-                    setSelectedDaysInDateForm([...selectedDaysInDateForm.slice(0,selectedDaysInDateForm.indexOf(currDate)),
-                                                 ...selectedDaysInDateForm.slice(selectedDaysInDateForm.indexOf(currDate)+1)])
                 }
                 else{
-                    setSelectedDays([...selectedDays,curr]);
-                    setSelectedDaysInDateForm([...selectedDaysInDateForm,currDate]);
+                    setSelectedDays([...selectedDays, curr]);
                 }
-                }}
+                setPrevMonth(curr[1]);
+                setPrevYear(curr[0]);
+            }}
             disabledDate={(time) => {
                 return time < moment().subtract(1,"days");
             }}
@@ -120,7 +128,7 @@ export default ({teamName, preTime, registerClosed}) => {
         <Row>
             <Col span={6}>
                 <Button 
-                    disabled={registerClosed || (selectedDays.length === 0?true:false)} 
+                    disabled={registerClosed} 
                     onClick={() => {
                         handleOnclick();
                     }}

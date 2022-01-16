@@ -83,12 +83,12 @@ const SearchType = ({setSearch, teamName}) => {
             </Content>
         </Layout>
         <Footer className="system__app">
-            <Row align='center'>
+            {teamName === "Admin" ? <></> : <Row align='center'>
                 <Space size={6}> 
                     <Checkbox defaultChecked={onlySelf} onChange={() => handleCheckboxChange()}>
                     </Checkbox><h6>僅顯示己方隊伍對戰組合</h6>
                 </Space>
-            </Row>
+            </Row>}
             <Button className="system__margins" onClick={() => {
                     setsearchSuccess(false);
                     }}>返回查詢選項</Button>

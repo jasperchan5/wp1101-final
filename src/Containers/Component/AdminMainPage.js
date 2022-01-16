@@ -11,7 +11,7 @@ import "./AdminMainPage.css"
 
 const AdminMainPage = ({setRegister, teamName, registerClosed}) => {
     const { data, loading } = useQuery(TEAMNAME_QUERY);
-    if(loading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
+    if(loading) return message.loading("Loading...", 1.5)
 
     const columns = [{
         title: '隊伍列表',

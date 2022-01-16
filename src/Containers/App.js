@@ -25,7 +25,7 @@ function App() {
                 if(!subscriptionData) return prev;
                 const newTeam = subscriptionData.data.createTeam;
 
-                console.log(prev);
+                // console.log(prev);
 
                 return {
                     teamName: [...prev.teamName, newTeam]
@@ -43,10 +43,10 @@ function App() {
                 if(!subscriptionData) return prev;
                 const toDelete = subscriptionData.data.deleteTeam;
 
-                console.log(prev);
+                // console.log(prev);
 
                 const indexDel = prev.teamName.findIndex(o => o.team === toDelete.team);
-                console.log(indexDel);
+                // console.log(indexDel);
 
                 return {
                     teamName: [...prev.teamName.slice(0, indexDel), ...prev.teamName.slice(indexDel + 1)]
@@ -94,7 +94,7 @@ function App() {
       <Footer></Footer>
     </Layout>
   </>
-  if(loading) return message.loading("Loading...", 0.5, message.success("Loaded successfully!"))
+  if(loading) return message.loading("Loading...", 1.5)
 
   // console.log(data);
 
